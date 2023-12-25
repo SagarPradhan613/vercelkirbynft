@@ -1,0 +1,20 @@
+const Images = {
+    logo: require('../assets/images/logo.png'),
+    meuIcon:  require('../assets/images/menuIcon.png'),
+    leftsideImg: require('../assets/images/leftsideImg.png'),
+    connectModalTop: require('../assets/images/connectModalBg.png'),
+    connectModalBgOne: require('../assets/images/connectModalBtnBgOne.png'),
+    connectModalBgTwo: require('../assets/images/connectModalBtnBgTwo.png'),
+    connectModalBgThree: require('../assets/images/connectModalBtnBgThree.png'),
+    characterOne: require('../assets/images/characterOne.png'),
+    characterTwo: require('../assets/images/characterTwo.png'),
+    characterThree: require('../assets/images/characterThree.png'),
+    modalBg: require('../assets/images/modalBg.png'),
+    bllingIcon: require('../assets/images/bllingIcon.png'),
+    sorryModal: require('../assets/images/sorryModal.png'),
+    closeIcon: require('../assets/images/close.png'),
+    twitterIcon: require('../assets/images/twitter.png'),
+    telegramIcon: require('../assets/images/telegram.png'),
+    circleLogo: require('../assets/images/logoCircle.png'),
+}
+export default Images;

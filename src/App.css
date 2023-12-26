@@ -414,6 +414,16 @@ img.character.eight {
   font-size: 12px;
 }
 @media only screen and (min-width: 581px) and (max-width: 1017px) {
+  .modal-overlay .modal-container {
+    width: 60%;
+  }
+}
+@media only screen and (min-width: 1018px) and (max-width: 1299px) {
+  .modal-overlay .modal-container {
+    width: 45%;
+  }
+}
+@media only screen and (min-width: 581px) and (max-width: 1017px) {
   .modal-overlay1 .modal-container1 {
     width: 60%;
   }
@@ -459,6 +469,27 @@ img.character.eight {
     padding: 10%;
     width: 100%;
   }
+
+
+  .modal-overlay .modal-container {
+    width: 90%;
+  }
+  .modal-overlay .modal-container button {
+    margin-top: 12px;
+  }
+  h5.text-white.text-end.mt-2 {
+    text-align: center !important;
+  }
+  .modal-overlay .modal-container.show-connect-modal,
+  .modal-overlay .modal-container.show-success-modal,
+  .modal-overlay .modal-container.show-sorry-modal {
+    margin-top: 20%;
+  }
+  .modal-container .modal-button button {
+    width: 122px;
+  }
+
+
   .modal-overlay1 .modal-container1 {
     width: 90%;
   }
@@ -476,6 +507,8 @@ img.character.eight {
   .modal-container1 .modal-button button {
     width: 122px;
   }
+
+
   .main-content {
     margin-left: 0px;
     margin-right: 16px;

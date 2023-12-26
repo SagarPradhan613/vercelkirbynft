@@ -1,4 +1,6 @@
 import React, { ReactElement } from 'react';
+import { ConnectKitButton } from 'connectkit';
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import HomePage from './pages/HomePage';
@@ -11,6 +13,7 @@ const App = (): ReactElement<React.FC> => {
     return (
         <>
             <Col className="main-wrapper">
+            <ConnectKitButton />
                 <HomePage />
             </Col>
             <Footer />

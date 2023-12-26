@@ -34,7 +34,6 @@ const Header = ({handleShowConnect}:any): ReactElement<React.FC> => {
                     <Image src={Images.closeIcon} alt="" onClick={()=>setShowMenu(false)} />
                 </Col>
                 <Col>
-                    <button type="button" className="button full mt-5">Chart</button>
                     <button type="button" className="button full mt-4" onClick={showConnectModal}>Connect</button>
                 </Col>
                 <Col className="text-center m-100">

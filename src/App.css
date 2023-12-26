@@ -423,16 +423,10 @@ img.character.eight {
     width: 45%;
   }
 }
-@media only screen and (min-width: 581px) and (max-width: 1017px) {
-  .modal-overlay1 .modal-container1 {
-    width: 60%;
-  }
-}
-@media only screen and (min-width: 1018px) and (max-width: 1299px) {
-  .modal-overlay1 .modal-container1 {
-    width: 45%;
-  }
-}
+
+
+
+
 @media only screen and (max-width: 580px) {
   .hide-in-mobile {
     display: none;

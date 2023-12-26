@@ -1,4 +1,4 @@
-import React, { ReactElement, useState } from "react";
+import React, { ReactElement, useEffect, useState } from "react";
 import Header from "../components/Header";
 import {
     Col,
@@ -19,7 +19,9 @@ const HomePage = (): ReactElement<React.FC> => {
     const [congatulationModal, setCongatulationModal] = useState<boolean>(false);
     const [sorryModal, setSorryModal] = useState<boolean>(false);
     const [checkoutSuccess, setCheckoutSuccess] = useState<boolean>(false);
-    const [nowallet, setNowallet] = useState<boolean>(false)
+    const [mintLength, setMintLength] = useState<number[]>([]);
+
+
     const incrementMint = (): void => {
         setmintValue(mintValue + 1);
     }
@@ -45,11 +47,8 @@ const HomePage = (): ReactElement<React.FC> => {
     }
     const handleShowCongatulation = (): void => {
         if (walletAddress.length !== 0) {
-            setNowallet(false)
             const s = Math.floor(Math.random() * 2)
             s === 1 ? setCongatulationModal(true) : setSorryModal(true);
-        } else {
-            setNowallet(true)
         }
     }
     const handleCloseSorryModal = (): void => {
@@ -71,6 +70,15 @@ const HomePage = (): ReactElement<React.FC> => {
             setmintValue(0)
         }
     }
+
+    useEffect(() => {
+        const newMintLength = [];
+        for (let i = 0; i < mintValue; i++) {
+          newMintLength.push(i);
+        }
+        setMintLength(newMintLength);
+      }, [mintValue]);
+
     return (
         <Col>
             <Header handleShowConnect={handleShowConnect} />
@@ -155,8 +163,8 @@ const HomePage = (): ReactElement<React.FC> => {
                                     </Col>
                                     <Col className="mt-3 details">
                                         <span className="flex flex-row flex-justify mt-1">
-                                            <small>100 FTM x 1 edition</small>
-                                            <strong>100 FTM</strong>
+                                            <small>100 FTM x {mintValue} NFTs</small>
+                                            <strong>100 FTM Approx.</strong>
                                         </span>
                                         <span className="divider mt-2 mb-2"></span>
                                         <span className="flex flex-row flex-justify mt-1">
@@ -165,7 +173,7 @@ const HomePage = (): ReactElement<React.FC> => {
                                         </span>
                                         <span className="flex flex-row flex-justify mt-1">
                                             <small>You will pay</small>
-                                            <strong>100 FTM</strong>
+                                            <strong>100 FTM Approx.</strong>
                                         </span>
                                     </Col>
                                 </Col>
@@ -215,19 +223,16 @@ const HomePage = (): ReactElement<React.FC> => {
             <Col className={checkoutSuccess ? 'modal-overlay1 show-overlay' : 'modal-overlay1'}>
                 <Col className={`${checkoutSuccess ? "modal-container1 show-sorry-modal p-4 checkout-modal" : "modal-container1 p-4 checkout-modal "}`}>
                     <span className="close-icon" onClick={handleCloseCheckoutModal}>X</span>
-                    <h6 className="text-white">MINTED <span className="text-blue">{mintValue} NFTS</span></h6>
+                    <h6 className="text-white">MINTED <span className="text-blue">{mintValue}</span></h6>
                     <h4 className="text-white text-center">Successfully</h4>
                     <Col className="text-center w-100" >
                         <Carousel showThumbs={false} showStatus={false} infiniteLoop={true}>
-                            <div className="blue-bg">
-                                <img src={Images.leftsideImg} alt="" />
-                            </div>
-                            <div className="blue-bg">
-                                <img src={Images.leftsideImg} alt="" />
-                            </div>
-                            <div className="blue-bg">
-                                <img src={Images.leftsideImg} alt="" />
-                            </div>
+                            {mintLength.map((_, index) => (
+                                <div className="blue-bg" key={index}>
+                                    <img src={Images.leftsideImg} alt="" />
+                                </div>
+                            ))}
+
                         </Carousel>
                     </Col>
                     <Col className="mt-3">

@@ -9,59 +9,59 @@ import {
 import Images from "../shared/Images";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
-import { truncateSync } from "fs";
+// import { truncateSync } from "fs";
 
-const HomePage = (): ReactElement<React.FC> => {
-    const [mintValue, setmintValue] = useState<number>(0);
-    const [walletAddress, setWalletAddress] = useState<string>('');
-    const [showConnect, setShowConnect] = useState<boolean>(false);
-    const [showMint, setShowMint] = useState<boolean>(false);
-    const [congatulationModal, setCongatulationModal] = useState<boolean>(false);
-    const [sorryModal, setSorryModal] = useState<boolean>(false);
-    const [checkoutSuccess, setCheckoutSuccess] = useState<boolean>(false);
-    const [mintLength, setMintLength] = useState<number[]>([]);
+const HomePage = () => {
+    const [mintValue, setmintValue] = useState(0);
+    const [walletAddress, setWalletAddress] = useState('');
+    const [showConnect, setShowConnect] = useState(false);
+    const [showMint, setShowMint] = useState(false);
+    const [congatulationModal, setCongatulationModal] = useState(false);
+    const [sorryModal, setSorryModal] = useState(false);
+    const [checkoutSuccess, setCheckoutSuccess] = useState(false);
+    const [mintLength, setMintLength] = useState([]);
 
 
-    const incrementMint = (): void => {
+    const incrementMint = () => {
         setmintValue(mintValue + 1);
     }
-    const decrementMint = (): void => {
+    const decrementMint = () => {
         mintValue > 0 ? setmintValue(mintValue - 1) : setmintValue(0);
     }
-    const handleCloseConnect = (): void => {
+    const handleCloseConnect = () => {
         setShowConnect(false)
     }
-    const handleShowConnect = (): void => {
+    const handleShowConnect = () => {
         setShowConnect(true);
     }
-    const handleCloseMint = (): void => {
+    const handleCloseMint = () => {
         setShowMint(false);
     }
-    const handleShowMint = (): void => {
+    const handleShowMint = () => {
         if (mintValue !== 0) {
             setShowMint(true);
         }
     }
-    const handleCloseCngratulationModal = (): void => {
+    const handleCloseCngratulationModal = () => {
         setCongatulationModal(false);
     }
-    const handleShowCongatulation = (): void => {
+    const handleShowCongatulation = () => {
         if (walletAddress.length !== 0) {
             const s = Math.floor(Math.random() * 2)
             s === 1 ? setCongatulationModal(true) : setSorryModal(true);
         }
     }
-    const handleCloseSorryModal = (): void => {
+    const handleCloseSorryModal = () => {
         setSorryModal(false);
     }
-    const handleCloseCheckoutModal = (): void => {
+    const handleCloseCheckoutModal = () => {
         setCheckoutSuccess(false);
     }
-    const handleShowCheckoutModal = (): void => {
+    const handleShowCheckoutModal = () => {
         setShowMint(false);
         setCheckoutSuccess(true);
     }
-    const handleMintValue = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    const handleMintValue = (e) => {
         console.log(e.target.value);
 
         if (e.target.value) {

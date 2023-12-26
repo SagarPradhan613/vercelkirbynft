@@ -17,5 +17,6 @@ const Images = {
     twitterIcon: require('../assets/images/twitter.png'),
     telegramIcon: require('../assets/images/telegram.png'),
     circleLogo: require('../assets/images/logoCircle.png'),
+    ftm: require('../assets/images/ftm.svg'),
 }
 export default Images;

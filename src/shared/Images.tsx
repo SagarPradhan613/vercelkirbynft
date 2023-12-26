@@ -2,6 +2,7 @@ const Images = {
     logo: require('../assets/images/logo.png'),
     meuIcon:  require('../assets/images/menuIcon.png'),
     leftsideImg: require('../assets/images/leftsideImg.png'),
+    leftsideImg1: require('../assets/images/leftsideImg1.png'),
     connectModalTop: require('../assets/images/connectModalBg.png'),
     connectModalBgOne: require('../assets/images/connectModalBtnBgOne.png'),
     connectModalBgTwo: require('../assets/images/connectModalBtnBgTwo.png'),

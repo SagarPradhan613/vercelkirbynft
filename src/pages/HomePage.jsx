@@ -4,6 +4,8 @@ import { Col, Row, Image, Container } from "react-bootstrap";
 import Images from "../shared/Images";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
+// import { truncateSync } from "fs";
+
 import { useAccount, useNetwork, useEnsName } from "wagmi";
 import { getContract, getWalletClient } from "@wagmi/core";
 import { erc20abi } from "../abis/erc20";
@@ -12,11 +14,8 @@ import { inoabi } from "../abis/ino";
 import BigNumber from "bignumber.js";
 import { writeContract } from "@wagmi/core";
 
-const erc20Add = process.env.REACT_APP_ERC20;
 const erc721Add = process.env.REACT_APP_ERC721;
 const inoAdd = process.env.REACT_APP_INO;
-const MAX_NUMBER =
-  "115792089237316195423570985008687907853269984665640564039457584007913129639935";
 
 const HomePage = () => {
   const [mintValue, setmintValue] = useState(0);
@@ -26,22 +25,18 @@ const HomePage = () => {
   const [congatulationModal, setCongatulationModal] = useState(false);
   const [sorryModal, setSorryModal] = useState(false);
   const [checkoutSuccess, setCheckoutSuccess] = useState(false);
+  const [mintLength, setMintLength] = useState([]);
 
   const [isMintLive, setisMintLive] = useState(false);
-  const [symbol, setSymbol] = useState("");
   const [priceWei, setPriceWei] = useState(0);
   const [price, setPrice] = useState(0);
   const [decimal, setDecimal] = useState(0);
   const [remaining, setremaining] = useState(0);
   const [userTokenBal, setuserTokenBal] = useState(0);
-  const [userAllowance, setuserAllowance] = useState(0);
+  const [isWhiteListed, setisWhiteListed] = useState(false);
 
   const { address } = useAccount();
 
-  const erc20Contract = getContract({
-    address: erc20Add,
-    abi: erc20abi,
-  });
   const erc721Contract = getContract({
     address: erc721Add,
     abi: erc721abi,
@@ -56,20 +51,17 @@ const HomePage = () => {
       const ismintLive = await inoContract.read.claimenabled();
       setisMintLive(ismintLive);
 
-      const decimal = await inoContract.read.tokenDecimal();
-      setDecimal(Number(decimal));
+      setDecimal(18);
       const priceWei = await inoContract.read.price();
       setPriceWei(priceWei);
 
-      const price = new BigNumber(priceWei).div(`1e${Number(decimal)}`);
+      const price = new BigNumber(priceWei).div(1e18);
       setPrice(price.toFixed());
-
-      setSymbol(await erc20Contract.read.symbol());
     };
 
     const userCalls = async () => {
       if (address) {
-        const decimal = await inoContract.read.tokenDecimal();
+        const decimal = 18;
         const remainingContr = await inoContract.read.remainigContribution([
           address,
         ]);
@@ -80,11 +72,11 @@ const HomePage = () => {
           setremaining(mintable.toFixed(0));
         }
 
-        const balance = await erc20Contract.read.balanceOf([address]);
+        const balance = await inoContract.read.checkbalance([address]);
         setuserTokenBal(balance);
 
-        const allowance = await erc20Contract.read.allowance([address, inoAdd]);
-        setuserAllowance(allowance);
+        const isWhitelisted = await inoContract.read.isWhitelisted([address]);
+        setisWhiteListed(isWhitelisted);
       }
     };
 
@@ -102,7 +94,7 @@ const HomePage = () => {
 
     // Clear the interval when the component unmounts or when the dependency array changes
     return () => clearInterval(userCallsInterval);
-  }, [address, inoContract, erc20Contract]);
+  }, [address, inoContract]);
 
   const incrementMint = () => {
     if (mintValue + 1 > remaining) {
@@ -124,14 +116,22 @@ const HomePage = () => {
     setShowMint(false);
   };
   const handleShowMint = () => {
-    setShowMint(true);
+    if (mintValue !== 0) {
+      setShowMint(true);
+    }
   };
   const handleCloseCngratulationModal = () => {
     setCongatulationModal(false);
   };
-  const handleShowCongatulation = () => {
-    const s = Math.floor(Math.random() * 2);
-    s === 1 ? setCongatulationModal(true) : setSorryModal(true);
+  const handleShowCongatulation = async () => {
+    try {
+      const isWhitelisted = await inoContract.read.isWhitelisted([
+        walletAddress,
+      ]);
+      isWhitelisted ? setCongatulationModal(true) : setSorryModal(true);
+    } catch (error) {
+      throw error;
+    }
   };
   const handleCloseSorryModal = () => {
     setSorryModal(false);
@@ -144,33 +144,42 @@ const HomePage = () => {
     await handleMint();
     setCheckoutSuccess(true);
   };
+  const handleMintValue = (e) => {
+    console.log(e.target.value);
+
+    if (e.target.value) {
+      if (e.target.value > remaining) {
+        setmintValue(remaining);
+        return;
+      }
+      setmintValue(parseInt(e.target.value));
+    } else {
+      setmintValue(0);
+    }
+  };
 
   const handleMint = async () => {
     try {
-      if (
-        new BigNumber(priceWei)
-          .mul(mintValue)
-          .greaterThanOrEqualTo(userAllowance)
-      ) {
-        const { hash } = await writeContract({
-          address: erc20Add,
-          abi: erc20abi,
-          functionName: "approve",
-          args: [inoAdd, MAX_NUMBER],
-        });
-      }
-
       const { hash } = await writeContract({
         address: inoAdd,
         abi: inoabi,
         functionName: "trade",
         args: [mintValue],
+        value: new BigNumber(priceWei).mul(mintValue).toString()
       });
     } catch (error) {
       console.log("error", error.message);
       throw error;
     }
   };
+
+  useEffect(() => {
+    const newMintLength = [];
+    for (let i = 0; i < mintValue; i++) {
+      newMintLength.push(i);
+    }
+    setMintLength(newMintLength);
+  }, [mintValue]);
 
   return (
     <Col>
@@ -235,9 +244,9 @@ const HomePage = () => {
               Mint is Live Now
             </h1>
           )}
-          <p className="text-center text-white mt-5 mb-5 bellow-img">
-            Kirby is the ultimate memecoin platform, and it couldn't be easier
-            to get your hands on the token in our presale.
+          <p className="text-center text-white mt-5 mb-5 bellow-img h6">
+            Blue Kirby NFTs are ready to be minted. Mint yours for free from
+            below!
           </p>
           <Col className="flex flex-row flex-justify">
             <button
@@ -245,18 +254,43 @@ const HomePage = () => {
               className="button increment-decrement"
               onClick={decrementMint}
             >
-              <span className="decrement">-</span>
+              <span className="decrement">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="26"
+                  height="26"
+                  fill="currentColor"
+                  className="bi bi-dash"
+                  viewBox="0 0 16 16"
+                >
+                  <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8" />
+                </svg>
+              </span>
             </button>
-            <input type="text" value={mintValue} className="mint-value" />
+            <input
+              type="text"
+              value={mintValue}
+              className="mint-value mx-1"
+              onChange={handleMintValue}
+            />
             <button
               type="button"
               className="button increment-decrement"
               onClick={incrementMint}
             >
-              +
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="26"
+                height="26"
+                fill="currentColor"
+                className="bi bi-plus"
+                viewBox="0 0 16 16"
+              >
+                <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4" />
+              </svg>
             </button>
           </Col>
-          {address && isMintLive && (
+          {address && isMintLive && isWhiteListed && (
             <button
               type="button"
               className="button full mt-5"
@@ -265,12 +299,8 @@ const HomePage = () => {
               MINT NOW
             </button>
           )}
-          <p className="text-center text-white mt-5">
-            Price {price} {symbol} + Gas <br />
-            {/* Floor Price 2.01 ETH */}
-          </p>
         </Col>
-        {/* <Container>
+        <Container>
           <Col xl={12} md={12} sm={12} xs={12} className="bg-wrapper">
             <Row className="p-4 mt-5">
               <Col xl={4} md={4} sm={12} xs={12}>
@@ -295,7 +325,7 @@ const HomePage = () => {
               </Col>
             </Row>
           </Col>
-        </Container> */}
+        </Container>
       </Row>
       {/* Connect modal */}
       <Col
@@ -353,12 +383,11 @@ const HomePage = () => {
             <Row>
               <Col xl={7} md={7} sm={12} xs={12}>
                 <h4 className="text-center show-in-mobile text-white">
-                  Checkout
+                  Details
                 </h4>
                 <Col className="modal-left-container">
                   <p>
-                    You are about to mint <strong>{mintValue} NFT</strong> from{" "}
-                    <strong>{erc721Add}</strong> collection
+                    YOU ARE ABOUT TO MINT <strong>{mintValue} NFT</strong>
                   </p>
                   <Col className="modal-inner-container flex flex-row flex-justify flex-middle">
                     <span className="flex flex-row">
@@ -366,11 +395,9 @@ const HomePage = () => {
                       <span className="flex flex-column flex-start">
                         <small>
                           <small>
-                            {address && (
-                              <small className="text-white">
-                                {address.slice(0, 8)}......{address.slice(-8)}{" "}
-                              </small>
-                            )}
+                            <small className="text-white">
+                              {address?.slice(0, 6)}....{address?.slice(-6)}
+                            </small>
                           </small>
                         </small>
                         <small>
@@ -386,38 +413,27 @@ const HomePage = () => {
                   <Col className="mt-3 details">
                     <span className="flex flex-row flex-justify mt-1">
                       <small>
-                        {price} {symbol} x {mintValue} edition
+                        {price} FTM x {mintValue} NFTs
                       </small>
-                      <strong>
-                        {price * mintValue} {symbol}{" "}
-                      </strong>
+                      <strong>{(price * mintValue).toFixed(3)} FTM Approx.</strong>
                     </span>
-                    {/* <span className="flex flex-row flex-justify mt-1">
-                                            <small>Platform fee</small>
-                                            <strong>0 BNB</strong>
-                                        </span> */}
                     <span className="divider mt-2 mb-2"></span>
                     <span className="flex flex-row flex-justify mt-1">
                       <small>Balance</small>
                       <strong>
-                        {new BigNumber(userTokenBal)
-                          .div(`1e${decimal}`)
-                          .toFixed()}{" "}
-                        {symbol}
+                        {new BigNumber(userTokenBal).div(1e18).toFixed(4)} FTM
                       </strong>
                     </span>
                     <span className="flex flex-row flex-justify mt-1">
                       <small>You will pay</small>
-                      <strong>
-                        {price * mintValue} {symbol}
-                      </strong>
+                      <strong>{(price * mintValue).toFixed(3)} FTM Approx.</strong>
                     </span>
                   </Col>
                 </Col>
               </Col>
               <Col xl={5} md={5} sm={12} xs={12}>
                 <h4 className="text-center hide-in-mobile text-white">
-                  Checkout
+                  Details
                 </h4>
                 <Image
                   src={Images.modalBg}
@@ -427,14 +443,14 @@ const HomePage = () => {
                   className="mt-4 hide-in-mobile"
                 />
                 <button
+                  disabled={new BigNumber(userTokenBal).lessThan(
+                    new BigNumber(priceWei).mul(mintValue)
+                  )}
                   type="button"
-                  disabled={new BigNumber(userTokenBal)
-                    .div(`1e${decimal}`)
-                    .lessThan(price * mintValue)}
                   className="button full btn-checkout mt-4"
                   onClick={handleShowCheckoutModal}
                 >
-                  CHECKOUT NOW
+                  Mint Now
                 </button>
               </Col>
             </Row>
@@ -467,11 +483,15 @@ const HomePage = () => {
           <br />
           <Col className="text-center conngratulation">
             <p>Your wallet</p>
-            <p className="text-white">0x24safshdhgsjsbfhsfsdgsjh</p>
+            <p className="text-white">{walletAddress}</p>
             <h6>is Whitelisted!</h6>
           </Col>
           <Col className="mt-5 mb-3">
-            <button type="button" className="button full">
+            <button
+              type="button"
+              className="button full"
+              onClick={handleCloseCngratulationModal}
+            >
               DONE!
             </button>
           </Col>
@@ -499,11 +519,15 @@ const HomePage = () => {
           <br />
           <Col className="text-center conngratulation sorry">
             <p>Your wallet</p>
-            <p className="text-white">0x24safshdhgsjsbfhsfsdgsjh</p>
+            <p className="text-white">{walletAddress}</p>
             <h6>is Not Whitelisted!</h6>
           </Col>
           <Col className="mt-5 mb-3">
-            <button type="button" className="button full">
+            <button
+              type="button"
+              className="button full"
+              onClick={handleCloseSorryModal}
+            >
               DONE!
             </button>
           </Col>
@@ -512,34 +536,30 @@ const HomePage = () => {
       {/* Checkout success modal */}
       <Col
         className={
-          checkoutSuccess ? "modal-overlay show-overlay" : "modal-overlay"
+          checkoutSuccess ? "modal-overlay1 show-overlay" : "modal-overlay1"
         }
       >
         <Col
-          className={
+          className={`${
             checkoutSuccess
-              ? "modal-container show-sorry-modal p-4 checkout-modal"
-              : "modal-container p-4 checkout-modal"
-          }
+              ? "modal-container1 show-sorry-modal p-4 checkout-modal"
+              : "modal-container1 p-4 checkout-modal "
+          }`}
         >
           <span className="close-icon" onClick={handleCloseCheckoutModal}>
             X
           </span>
           <h6 className="text-white">
-            MINTED <span className="text-blue">{mintValue} NFTS</span>
+            MINTED <span className="text-blue">{mintValue}</span>
           </h6>
           <h4 className="text-white text-center">Successfully</h4>
-          <Col className="text-center">
+          <Col className="text-center w-100">
             <Carousel showThumbs={false} showStatus={false} infiniteLoop={true}>
-              <div>
-                <img src={Images.leftsideImg} alt="" height={250} />
-              </div>
-              <div>
-                <img src={Images.leftsideImg} alt="" height={250} />
-              </div>
-              <div>
-                <img src={Images.leftsideImg} alt="" height={250} />
-              </div>
+              {mintLength.map((_, index) => (
+                <div className="blue-bg" key={index}>
+                  <img src={Images.leftsideImg} alt="" />
+                </div>
+              ))}
             </Carousel>
           </Col>
           <Col className="mt-3">
@@ -573,7 +593,11 @@ const HomePage = () => {
             </span>
           </Col>
           <Col className="mt-2 mb-1">
-            <button type="button" className="button full">
+            <button
+              type="button"
+              className="button full"
+              onClick={handleCloseCheckoutModal}
+            >
               DONE!
             </button>
           </Col>

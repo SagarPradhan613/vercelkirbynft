@@ -6,6 +6,7 @@ import {
     Image,
 } from "react-bootstrap";
 import Images from "../shared/Images";
+import { useAccount, useDisconnect } from "wagmi";
 
 const Header = ({ handleShowConnect }: any): ReactElement<React.FC> => {
     const [showMenu, setShowMenu] = useState<boolean>(false);
@@ -13,6 +14,10 @@ const Header = ({ handleShowConnect }: any): ReactElement<React.FC> => {
         setShowMenu(false);
         handleShowConnect();
     }
+    
+    const { address } = useAccount()
+    const disconnect = useDisconnect()
+
     return (
         <Container>
             <Col xl={12} md={12} sm={12} xs={12}>
@@ -21,7 +26,7 @@ const Header = ({ handleShowConnect }: any): ReactElement<React.FC> => {
                         <Image src={Images.logo} alt="Logo" className="logo" />
                     </Col>
                     <Col xl={6} md={6} sm={6} xs={4} className="hide-in-mobile text-end">
-                        <button type="button" onClick={showConnectModal} className="button">CONNECT</button>
+                      { address ? <button type="button" onClick={() => disconnect?.disconnect()} className="button">{address.slice(0,7)}...{address.slice(-7)}</button> : <button type="button" onClick={showConnectModal} className="button">CONNECT</button> }  
                     </Col>
                     <Col xl={6} md={6} sm={6} xs={2} className="show-in-mobile text-end mr-2">
                         <Image src={Images.meuIcon} alt="Menu Icon" onClick={() => setShowMenu(true)} />
@@ -34,7 +39,7 @@ const Header = ({ handleShowConnect }: any): ReactElement<React.FC> => {
                     <Image src={Images.closeIcon} alt="" onClick={() => setShowMenu(false)} />
                 </Col>
                 <Col>
-                    <button type="button" className="button full mt-4" onClick={showConnectModal}>Connect</button>
+                 { address ? <button type="button" className="button full mt-4" onClick={() => disconnect?.disconnect()}>{address.slice(0,4)}...{address.slice(-4)}</button> :   <button type="button" className="button full mt-4" onClick={showConnectModal}>Connect</button>}
                 </Col>
                 <Col className="text-center m-100">
                     <a href="https://t.me/bluekirbyftm" target="_blank" rel="noopener noreferrer"><Image src={Images.telegramIcon} /></a> &nbsp;

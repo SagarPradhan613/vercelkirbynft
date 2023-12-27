@@ -10,11 +10,12 @@ import {
 import Footer from './components/Footer';
 
 const App = (): ReactElement<React.FC> => {
+ 
     return (
         <>
             <Col className="main-wrapper">
             <ConnectKitButton />
-                <HomePage />
+                <HomePage /> 
             </Col>
             <Footer />
         </>

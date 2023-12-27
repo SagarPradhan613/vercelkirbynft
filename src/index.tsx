@@ -5,10 +5,16 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 
-import { WagmiConfig, createConfig } from "wagmi";
+import { WagmiConfig, createConfig ,configureChains } from "wagmi";
+import { publicProvider } from '@wagmi/core/providers/public'
 import { fantomTestnet, fantom } from 'wagmi/chains';
 import { ConnectKitProvider, ConnectKitButton, getDefaultConfig } from "connectkit";
 
+
+const { chains, publicClient, webSocketPublicClient } = configureChains(
+  [fantom, fantomTestnet],
+  [publicProvider()],
+)
 
 const config = createConfig(
   getDefaultConfig({
@@ -16,9 +22,12 @@ const config = createConfig(
     //infuraId: process.env.REACT_APP_INFURA_ID,
     //alchemyId:  process.env.REACT_APP_ALCHEMY_ID,
     chains: [fantomTestnet, fantom],
-    walletConnectProjectId: process.env.REACT_APP_WALLETCONNECT_PROJECT_ID!,
+    walletConnectProjectId: '3503f54f4af9f3a448774f9a20a75584',
   })
 );
+
+
+
 
 
 const root = ReactDOM.createRoot(

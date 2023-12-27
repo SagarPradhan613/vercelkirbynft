@@ -6,7 +6,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 // import { truncateSync } from "fs";
 
-import { useAccount, useNetwork, useEnsName } from "wagmi";
+import { useAccount, useNetwork, useEnsName, useConnect } from "wagmi";
 import { getContract, getWalletClient } from "@wagmi/core";
 import { erc20abi } from "../abis/erc20";
 import { erc721abi } from "../abis/erc721";
@@ -34,8 +34,16 @@ const HomePage = () => {
   const [remaining, setremaining] = useState(0);
   const [userTokenBal, setuserTokenBal] = useState(0);
   const [isWhiteListed, setisWhiteListed] = useState(false);
+     
+  const { connect, connectors, error, isLoading, pendingConnector } = useConnect()
+  const metaMaskConnector = connectors[0];
+  const walletConnectConnector = connectors[2]
+  const injectedConnector = connectors[3];
 
-  const { address } = useAccount();
+  console.log("walletConnectConnector", walletConnectConnector);
+
+  const { address, connector } = useAccount();
+  console.log("connector", connector);
 
   const erc721Contract = getContract({
     address: erc721Add,
@@ -173,7 +181,7 @@ const HomePage = () => {
     }
   };
 
-  useEffect(() => {
+  useEffect(() => {             
     const newMintLength = [];
     for (let i = 0; i < mintValue; i++) {
       newMintLength.push(i);
@@ -264,7 +272,7 @@ const HomePage = () => {
                   viewBox="0 0 16 16"
                 >
                   <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8" />
-                </svg>
+                </svg>         
               </span>
             </button>
             <input
@@ -349,17 +357,30 @@ const HomePage = () => {
           />
           <br />
           <Col className="mt-5 mb-3 modal-button">
-            <button type="button">
+            <button 
+            disabled={!walletConnectConnector.ready}
+            key={walletConnectConnector.id}
+            onClick={() => connect({ connector: walletConnectConnector })}
+            type="button">
               <Image src={Images.connectModalBgOne} alt="Button BG" />
               <br />
               <p>Wallet Connect</p>
+              {!walletConnectConnector.ready && ' (unsupported)'}
             </button>
-            <button type="button">
+            <button 
+            disabled={!metaMaskConnector.ready}
+            key={metaMaskConnector.id}
+            onClick={() => connect({ connector:metaMaskConnector })}
+             type="button">
               <Image src={Images.connectModalBgTwo} alt="Button BG" />
               <br />
               <p>Metamask</p>
             </button>
-            <button type="button">
+            <button 
+              disabled={!injectedConnector.ready}
+              key={injectedConnector.id}
+              onClick={() => connect({ connector:injectedConnector })} 
+            type="button">
               <Image src={Images.connectModalBgThree} alt="Button BG" />
               <br />
               <p>Trust Wallet</p>
@@ -394,7 +415,7 @@ const HomePage = () => {
                       <Image src={Images.bllingIcon} alt="" /> &nbsp;
                       <span className="flex flex-column flex-start">
                         <small>
-                          <small>
+                          <small>                         
                             <small className="text-white">
                               {address?.slice(0, 6)}....{address?.slice(-6)}
                             </small>

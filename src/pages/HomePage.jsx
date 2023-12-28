@@ -6,13 +6,24 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 // import { truncateSync } from "fs";
 
-import { useAccount, useNetwork, useEnsName, useConnect, useSwitchNetwork } from "wagmi";
+
+
+import {
+  useAccount,
+  useNetwork,
+  useEnsName,
+  useConnect,
+  useSwitchNetwork,
+} from "wagmi";
 import { getContract, getWalletClient } from "@wagmi/core";
 import { erc20abi } from "../abis/erc20";
 import { erc721abi } from "../abis/erc721";
 import { inoabi } from "../abis/ino";
 import BigNumber from "bignumber.js";
 import { writeContract } from "@wagmi/core";
+import Web3 from "web3";
+import { ethers } from "ethers";
+
 
 const erc721Add = process.env.REACT_APP_ERC721;
 const inoAdd = process.env.REACT_APP_INO;
@@ -34,17 +45,18 @@ const HomePage = () => {
   const [remaining, setremaining] = useState(0);
   const [userTokenBal, setuserTokenBal] = useState(0);
   const [isWhiteListed, setisWhiteListed] = useState(false);
+  const [nftData, setNftData] = useState([]);
+  const { chain } = useNetwork();
+  const etherProvider = new ethers.providers.JsonRpcProvider(chain?.rpcUrls?.public?.http[0]);
 
-
-  const { connect, connectors, isLoading, pendingConnector } =
-    useConnect();
+  const { connect, connectors, isLoading, pendingConnector } = useConnect();
 
   const metaMaskConnector = connectors[0];
   const walletConnectConnector = connectors[1];
   const injectedConnector = connectors[2];
 
-
   const { address, connector } = useAccount();
+  // console.log("addres", address);
 
   const erc721Contract = getContract({
     address: erc721Add,
@@ -99,7 +111,7 @@ const HomePage = () => {
       address &&
       setInterval(() => {
         userCalls(); // Call userCalls repeatedly at the specified interval only if address is present
-      }, 500000); // Adjust the interval time as needed (5000 milliseconds in this example)
+      }, 5000); // Adjust the interval time as needed (5000 milliseconds in this example)
 
     // Clear the interval when the component unmounts or when the dependency array changes
     return () => clearInterval(userCallsInterval);
@@ -153,12 +165,13 @@ const HomePage = () => {
     await handleMint();
     setCheckoutSuccess(true);
   };
+
   const handleMintValue = (e) => {
-    console.log(e.target.value);
+    // console.log(e.target.value);
 
     if (e.target.value) {
-      if (e.target.value > remaining) {
-        setmintValue(remaining);
+      if (Number(e.target.value) > Number(remaining)) {
+        setmintValue(parseInt(remaining));
         return;
       }
       setmintValue(parseInt(e.target.value));
@@ -176,6 +189,26 @@ const HomePage = () => {
         args: [mintValue],
         value: new BigNumber(priceWei).mul(mintValue).toString(),
       });
+         
+      const receipt = await etherProvider.waitForTransaction(hash);
+      console.log("receipt", receipt);
+
+      const logs =  receipt?.logs?.filter((data) => {
+        return data?.address?.toLowerCase() === inoAdd.toLowerCase();
+      })
+ 
+      const nftData = []
+      logs.forEach((data) => {
+        const obj = {};
+        const id = parseInt(data.topics[2], 16)
+        obj['nftId'] = id 
+        obj['metaData'] = require(`../Meta/${id}.json`);
+        obj['img'] = `https://plum-elaborate-gecko-166.mypinata.cloud/ipfs/QmdVpWphPvs2fjvoAm6v3BkH4iXiRKiHtXEc8WSGpLx9rj/${id}.png`
+        nftData.push(obj)
+      })
+
+      setNftData(nftData);
+       
     } catch (error) {
       console.log("error", error.message);
       throw error;
@@ -591,45 +624,50 @@ const HomePage = () => {
             MINTED <span className="text-blue">{mintValue}</span>
           </h6>
           <h4 className="text-white text-center">Successfully</h4>
+
           <Col className="text-center w-100">
             <Carousel showThumbs={false} showStatus={false} infiniteLoop={true}>
-              {mintLength.map((_, index) => (
+              {nftData?.map((data, index) => (
                 <div className="blue-bg" key={index}>
-                  <img src={Images.leftsideImg} alt="" />
+                  <img src={data.img} alt="" />
+               
+                <span className="flex flex-row flex-justify mt-2 small-text-modal">
+                  <span className="text-gray">Id</span>
+                  <span className="text-white">{data.nftId}</span>
+                </span>      
+
+                <span className="flex flex-row flex-justify mt-2 small-text-modal">
+                  <span className="text-gray">Mouth</span>
+                  <span className="text-white">{data.metaData.attributes[4].value}</span>
+                </span>
+                <span className="flex flex-row flex-justify mt-2 small-text-modal">
+                  <span className="text-gray">Head</span>
+                  <span className="text-white">{data.metaData.attributes[3].value}</span>
+                </span>
+                <span className="flex flex-row flex-justify mt-2 small-text-modal">
+                  <span className="text-gray">Eyes</span>
+                  <span className="text-white">{data.metaData.attributes[2].value}</span>
+                </span>
+                <span className="flex flex-row flex-justify mt-2 small-text-modal">
+                  <span className="text-gray">Body</span>
+                  <span className="text-white">{data.metaData.attributes[1].value}</span>
+                </span>
+                <span className="flex flex-row flex-justify mt-2 small-text-modal">
+                  <span className="text-gray">Outifit</span>
+                  <span className="text-white">{data.metaData.attributes[5].value}</span>
+                </span>
+                <span className="flex flex-row flex-justify mt-2 small-text-modal">
+                  <span className="text-gray">Background</span>
+                  <span className="text-white">{data.metaData.attributes[0].value}</span>
+                </span>
                 </div>
               ))}
+             
+             
+            
             </Carousel>
           </Col>
-          <Col className="mt-3">
-            <span className="flex flex-row flex-justify mt-2 small-text-modal">
-              <span className="text-gray">ID</span>
-              <span className="text-white">#24</span>
-            </span>
-            <span className="flex flex-row flex-justify mt-2 small-text-modal">
-              <span className="text-gray">Mouth</span>
-              <span className="text-white">Bubble</span>
-            </span>
-            <span className="flex flex-row flex-justify mt-2 small-text-modal">
-              <span className="text-gray">Head</span>
-              <span className="text-white">Cowboy hat</span>
-            </span>
-            <span className="flex flex-row flex-justify mt-2 small-text-modal">
-              <span className="text-gray">Eyes</span>
-              <span className="text-white">Blue Laser</span>
-            </span>
-            <span className="flex flex-row flex-justify mt-2 small-text-modal">
-              <span className="text-gray">Cloths</span>
-              <span className="text-white">Bubble</span>
-            </span>
-            <span className="flex flex-row flex-justify mt-2 small-text-modal">
-              <span className="text-gray">Base Char</span>
-              <span className="text-white">Blue Laser</span>
-            </span>
-            <span className="flex flex-row flex-justify mt-2 small-text-modal">
-              <span className="text-gray">Eyes</span>
-              <span className="text-white">Blue Laser</span>
-            </span>
-          </Col>
+
           <Col className="mt-2 mb-1">
             <button
               type="button"

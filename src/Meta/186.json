@@ -1,0 +1,31 @@
+{
+  "name": "Legendary #186",
+  "description": "Sail the seas with the Pirate Kirby NFT, a legendary character embodying the adventurous spirit and swashbuckling charisma of the high seas.",
+  "image": "QmdVpWphPvs2fjvoAm6v3BkH4iXiRKiHtXEc8WSGpLx9rj/186.png",
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Light Skin"
+    },
+    {
+      "trait_type": "Body",
+      "value": "Pirate"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "Pirate"
+    },
+    {
+      "trait_type": "Head",
+      "value": "Pirate"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "Pirate"
+    },
+    {
+      "trait_type": "Outfit",
+      "value": "Pirate"
+    }
+  ]
+}

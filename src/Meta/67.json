@@ -1,0 +1,31 @@
+{
+  "name": "Legendary #67",
+  "description": "Protector of the Kirby realm, the Guardian Kirby NFT embodies strength, vigilance, and an unwavering commitment to the Fantom ecosystem.",
+  "image": "QmdVpWphPvs2fjvoAm6v3BkH4iXiRKiHtXEc8WSGpLx9rj/67.png",
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Light Skin"
+    },
+    {
+      "trait_type": "Body",
+      "value": "Guardian"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "Guardian"
+    },
+    {
+      "trait_type": "Head",
+      "value": "Guardian"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "Guardian"
+    },
+    {
+      "trait_type": "Outfit",
+      "value": "Guardian"
+    }
+  ]
+}

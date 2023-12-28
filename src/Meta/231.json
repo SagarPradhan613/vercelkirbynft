@@ -1,0 +1,31 @@
+{
+  "name": "Legendary #231",
+  "description": "Embrace the silent strength and stealthy prowess of the Ninja Kirby NFT. This legendary warrior moves through your collection with unparalleled grace.",
+  "image": "QmdVpWphPvs2fjvoAm6v3BkH4iXiRKiHtXEc8WSGpLx9rj/231.png",
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Light Skin"
+    },
+    {
+      "trait_type": "Body",
+      "value": "Ninja"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "Ninja"
+    },
+    {
+      "trait_type": "Head",
+      "value": "Ninja"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "Ninja"
+    },
+    {
+      "trait_type": "Outfit",
+      "value": "Ninja"
+    }
+  ]
+}

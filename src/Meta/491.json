@@ -1,0 +1,31 @@
+{
+  "name": "Legendary #491",
+  "description": "Enter the realm of horror with the Leatherface Kirby NFT, a legendary character that pays homage to the iconic and chilling world of horror fiction.",
+  "image": "QmdVpWphPvs2fjvoAm6v3BkH4iXiRKiHtXEc8WSGpLx9rj/491.png",
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Light Skin"
+    },
+    {
+      "trait_type": "Body",
+      "value": "Leatherface"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "Leatherface"
+    },
+    {
+      "trait_type": "Head",
+      "value": "Leatherface"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "Leatherface"
+    },
+    {
+      "trait_type": "Outfit",
+      "value": "Leatherface"
+    }
+  ]
+}

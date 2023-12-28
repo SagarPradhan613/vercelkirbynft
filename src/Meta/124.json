@@ -1,0 +1,31 @@
+{
+  "name": "Legendary #124",
+  "description": "With an aura of toxicity, the Poisonous Kirby NFT injects a dose of lethal charm into your collection.",
+  "image": "QmdVpWphPvs2fjvoAm6v3BkH4iXiRKiHtXEc8WSGpLx9rj/124.png",
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Light Skin"
+    },
+    {
+      "trait_type": "Body",
+      "value": "Poisonous"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "Poisonous"
+    },
+    {
+      "trait_type": "Head",
+      "value": "Poisonous"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "Poisonous"
+    },
+    {
+      "trait_type": "Outfit",
+      "value": "Poisonous"
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "name": "Common #103",
+  "description": "Blue Kirby NFTs Collection is a captivating blend of artistry, rarity, and the iconic Blue Kirby persona. Each NFT in this exclusive collection is a digital masterpiece, meticulously crafted to reflect the essence of Blue Kirby's journey and significance within the Fantom ecosystem.",
+  "image": "QmdVpWphPvs2fjvoAm6v3BkH4iXiRKiHtXEc8WSGpLx9rj/103.png",
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Hoki"
+    },
+    {
+      "trait_type": "Body",
+      "value": "Blue Kirby"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "3D Glasses"
+    },
+    {
+      "trait_type": "Head",
+      "value": "Horns"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "Blonde Beard"
+    },
+    {
+      "trait_type": "Outfit",
+      "value": "Orange Hoodie"
+    }
+  ]
+}

@@ -6,8 +6,6 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 // import { truncateSync } from "fs";
 
-
-
 import {
   useAccount,
   useNetwork,
@@ -16,16 +14,12 @@ import {
   useSwitchNetwork,
 } from "wagmi";
 import { getContract, getWalletClient } from "@wagmi/core";
-import { erc20abi } from "../abis/erc20";
-import { erc721abi } from "../abis/erc721";
 import { inoabi } from "../abis/ino";
 import BigNumber from "bignumber.js";
 import { writeContract } from "@wagmi/core";
-import Web3 from "web3";
 import { ethers } from "ethers";
 
 
-const erc721Add = process.env.REACT_APP_ERC721;
 const inoAdd = process.env.REACT_APP_INO;
 
 const HomePage = () => {
@@ -58,10 +52,6 @@ const HomePage = () => {
   const { address, connector } = useAccount();
   // console.log("addres", address);
 
-  const erc721Contract = getContract({
-    address: erc721Add,
-    abi: erc721abi,
-  });
   const inoContract = getContract({
     address: inoAdd,
     abi: inoabi,

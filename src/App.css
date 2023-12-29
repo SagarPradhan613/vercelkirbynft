@@ -126,6 +126,8 @@ input {
 input.mint-value {
   width: 72%;
   padding: 6px 20px;
+  position: relative;
+  z-index: 1000;
 }
 .bg-wrapper {
   background-color: #202d50;

@@ -7,7 +7,7 @@ import reportWebVitals from './reportWebVitals';
 
 import { WagmiConfig, createConfig ,configureChains } from "wagmi";
 import { publicProvider } from '@wagmi/core/providers/public'
-import { fantomTestnet, fantom } from 'wagmi/chains';
+import { fantom } from 'wagmi/chains';
 import { ConnectKitProvider, ConnectKitButton, getDefaultConfig } from "connectkit";
 
 // import { CoinbaseWalletConnector } from 'wagmi/connectors/coinbaseWallet'
@@ -17,7 +17,7 @@ import { WalletConnectConnector } from 'wagmi/connectors/walletConnect'
 
 
 const { chains, publicClient, webSocketPublicClient } = configureChains(
-  [fantomTestnet, fantom],
+  [fantom],
   [
     publicProvider(),
   ],

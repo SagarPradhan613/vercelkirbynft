@@ -60,6 +60,7 @@ const HomePage = () => {
 
   useEffect(() => {
     const globalCalls = async () => {
+      try {
       const ismintLive = await inoContract.read.claimenabled();
       setisMintLive(ismintLive);
 
@@ -69,31 +70,42 @@ const HomePage = () => {
 
       const price = new BigNumber(priceWei).div(1e18);
       setPrice(price.toFixed());
+      } catch (error) {
+        console.error(error);
+      }
     };
 
     const totalMintCalls = async () => {
-       const totalmint = await inoContract.read.claimIndex();
-       settotalMint(Number(totalmint));
+       try {
+        const totalmint = await inoContract.read.claimIndex();
+        settotalMint(Number(totalmint));
+       } catch (error) {
+        console.error(error);
+       }
     }
 
     const userCalls = async () => {
-      if (address) {
-        const decimal = 18;
-        const remainingContr = await inoContract.read.remainigContribution([
-          address,
-        ]);
-        if (price) {
-          const mintable = new BigNumber(remainingContr)
-            .div(price)
-            .div(`1e${Number(decimal)}`);
-          setremaining(mintable.toFixed(0));
+      try {
+        if (address) {
+          const decimal = 18;
+          const remainingContr = await inoContract.read.remainigContribution([
+            address,
+          ]);
+          if (price) {
+            const mintable = new BigNumber(remainingContr)
+              .div(price)
+              .div(`1e${Number(decimal)}`);
+            setremaining(mintable.toFixed(0));
+          }
+  
+          const balance = await inoContract.read.checkbalance([address]);
+          setuserTokenBal(balance);
+  
+          const isWhitelisted = await inoContract.read.isWhitelisted([address]);
+          setisWhiteListed(isWhitelisted);
         }
-
-        const balance = await inoContract.read.checkbalance([address]);
-        setuserTokenBal(balance);
-
-        const isWhitelisted = await inoContract.read.isWhitelisted([address]);
-        setisWhiteListed(isWhitelisted);
+      } catch (error) {
+        console.error(error)
       }
     };
 

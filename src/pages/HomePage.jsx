@@ -339,7 +339,7 @@ const HomePage = () => {
           </Col>
 
           <p className="text-center text-white mt-5  bellow-img h6">
-            NFT Counter: {totalMint} 
+            NFTs Minted:: {totalMint}/511 
           </p>
           {address && isMintLive && isWhiteListed && (
             <button

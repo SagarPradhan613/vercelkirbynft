@@ -1,31 +1,35 @@
 {
-  "name": "Legendary #186",
-  "description": "Sail the seas with the Pirate Kirby NFT, a legendary character embodying the adventurous spirit and swashbuckling charisma of the high seas.",
-  "image": "QmdVpWphPvs2fjvoAm6v3BkH4iXiRKiHtXEc8WSGpLx9rj/186.png",
+  "name": "Common Kirb #186",
+  "description": "Blue Friends NFTs Collection is a captivating blend of artistry, rarity, and the iconic Blue Kirby persona. Each NFT in this exclusive collection is a digital masterpiece, meticulously crafted to reflect the essence of Blue Kirby's journey and significance within the Fantom ecosystem.",
+  "image": "QmeePpAbxTpWafoZRCcCQfnKCB2gDMPeaT7tq6S6SDkE3N/186.png",
   "attributes": [
     {
       "trait_type": "Background",
-      "value": "Light Skin"
+      "value": "Hoki"
     },
     {
       "trait_type": "Body",
-      "value": "Pirate"
+      "value": "Blue Kirby"
     },
     {
       "trait_type": "Eyes",
-      "value": "Pirate"
+      "value": "Red VR"
+    },
+    {
+      "trait_type": "Feet",
+      "value": "Yellow Shoes"
     },
     {
       "trait_type": "Head",
-      "value": "Pirate"
+      "value": "Pink Headphones"
     },
     {
       "trait_type": "Mouth",
-      "value": "Pirate"
+      "value": "Angry"
     },
     {
       "trait_type": "Outfit",
-      "value": "Pirate"
+      "value": "Red Jacket"
     }
   ]
 }

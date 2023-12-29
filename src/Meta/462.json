@@ -1,7 +1,7 @@
 {
-  "name": "Legendary #462",
+  "name": "Legendary Kirb #462",
   "description": "Embark on a cosmic journey with the Astronaut Kirby NFT, a legendary space explorer ready to traverse the uncharted territories of your NFT universe.",
-  "image": "QmdVpWphPvs2fjvoAm6v3BkH4iXiRKiHtXEc8WSGpLx9rj/462.png",
+  "image": "QmeePpAbxTpWafoZRCcCQfnKCB2gDMPeaT7tq6S6SDkE3N/462.png",
   "attributes": [
     {
       "trait_type": "Background",
@@ -13,6 +13,10 @@
     },
     {
       "trait_type": "Eyes",
+      "value": "Astronaut"
+    },
+    {
+      "trait_type": "Feet",
       "value": "Astronaut"
     },
     {

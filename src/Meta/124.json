@@ -1,31 +1,35 @@
 {
-  "name": "Legendary #124",
-  "description": "With an aura of toxicity, the Poisonous Kirby NFT injects a dose of lethal charm into your collection.",
-  "image": "QmdVpWphPvs2fjvoAm6v3BkH4iXiRKiHtXEc8WSGpLx9rj/124.png",
+  "name": "Common Kirb #124",
+  "description": "Blue Friends NFTs Collection is a captivating blend of artistry, rarity, and the iconic Blue Kirby persona. Each NFT in this exclusive collection is a digital masterpiece, meticulously crafted to reflect the essence of Blue Kirby's journey and significance within the Fantom ecosystem.",
+  "image": "QmeePpAbxTpWafoZRCcCQfnKCB2gDMPeaT7tq6S6SDkE3N/124.png",
   "attributes": [
     {
       "trait_type": "Background",
-      "value": "Light Skin"
+      "value": "Hoki"
     },
     {
       "trait_type": "Body",
-      "value": "Poisonous"
+      "value": "Blue Kirby"
     },
     {
       "trait_type": "Eyes",
-      "value": "Poisonous"
+      "value": "Flat Eyes"
+    },
+    {
+      "trait_type": "Feet",
+      "value": "Yellow Shoes"
     },
     {
       "trait_type": "Head",
-      "value": "Poisonous"
+      "value": "Blue Sleeping Cap"
     },
     {
       "trait_type": "Mouth",
-      "value": "Poisonous"
+      "value": "Rainbow"
     },
     {
       "trait_type": "Outfit",
-      "value": "Poisonous"
+      "value": "Pink Jacket"
     }
   ]
 }

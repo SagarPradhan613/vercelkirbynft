@@ -1,7 +1,7 @@
 {
-  "name": "Legendary #312",
+  "name": "Legendary Kirb #312",
   "description": "Dive into the depths with the Crocodile Kirby NFT, a legendary aquatic companion that brings a touch of the wild to your NFT ensemble.",
-  "image": "QmdVpWphPvs2fjvoAm6v3BkH4iXiRKiHtXEc8WSGpLx9rj/312.png",
+  "image": "QmeePpAbxTpWafoZRCcCQfnKCB2gDMPeaT7tq6S6SDkE3N/312.png",
   "attributes": [
     {
       "trait_type": "Background",
@@ -13,6 +13,10 @@
     },
     {
       "trait_type": "Eyes",
+      "value": "Crocodile"
+    },
+    {
+      "trait_type": "Feet",
       "value": "Crocodile"
     },
     {

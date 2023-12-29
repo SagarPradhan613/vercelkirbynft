@@ -1,7 +1,7 @@
 {
-  "name": "Legendary #354",
+  "name": "Legendary Kirb #354",
   "description": "Step into the pixelated realm of nostalgia with the Television Kirby NFT, a legendary homage to the electronic age, encapsulating the essence of bygone eras.",
-  "image": "QmdVpWphPvs2fjvoAm6v3BkH4iXiRKiHtXEc8WSGpLx9rj/354.png",
+  "image": "QmeePpAbxTpWafoZRCcCQfnKCB2gDMPeaT7tq6S6SDkE3N/354.png",
   "attributes": [
     {
       "trait_type": "Background",
@@ -13,6 +13,10 @@
     },
     {
       "trait_type": "Eyes",
+      "value": "Television"
+    },
+    {
+      "trait_type": "Feet",
       "value": "Television"
     },
     {

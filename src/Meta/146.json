@@ -1,31 +1,35 @@
 {
-  "name": "Common #146",
-  "description": "Blue Kirby NFTs Collection is a captivating blend of artistry, rarity, and the iconic Blue Kirby persona. Each NFT in this exclusive collection is a digital masterpiece, meticulously crafted to reflect the essence of Blue Kirby's journey and significance within the Fantom ecosystem.",
-  "image": "QmdVpWphPvs2fjvoAm6v3BkH4iXiRKiHtXEc8WSGpLx9rj/146.png",
+  "name": "Legendary Kirb #146",
+  "description": "Embrace the silent strength and stealthy prowess of the Ninja Kirby NFT. This legendary warrior moves through your collection with unparalleled grace.",
+  "image": "QmeePpAbxTpWafoZRCcCQfnKCB2gDMPeaT7tq6S6SDkE3N/146.png",
   "attributes": [
     {
       "trait_type": "Background",
-      "value": "Kimberly"
+      "value": "Light Skin"
     },
     {
       "trait_type": "Body",
-      "value": "Blue Kirby"
+      "value": "Ninja"
     },
     {
       "trait_type": "Eyes",
-      "value": "Purple Glasses"
+      "value": "Ninja"
+    },
+    {
+      "trait_type": "Feet",
+      "value": "Ninja"
     },
     {
       "trait_type": "Head",
-      "value": "Purple Headband"
+      "value": "Ninja"
     },
     {
       "trait_type": "Mouth",
-      "value": "Bubble Gum"
+      "value": "Ninja"
     },
     {
       "trait_type": "Outfit",
-      "value": "Yuji hoodie"
+      "value": "Ninja"
     }
   ]
 }

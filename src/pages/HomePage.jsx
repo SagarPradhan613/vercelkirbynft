@@ -208,7 +208,7 @@ const HomePage = () => {
         const id = parseInt(data.topics[2], 16)
         obj['nftId'] = id 
         obj['metaData'] = require(`../Meta/${id}.json`);
-        obj['img'] = `https://plum-elaborate-gecko-166.mypinata.cloud/ipfs/QmdVpWphPvs2fjvoAm6v3BkH4iXiRKiHtXEc8WSGpLx9rj/${id}.png`
+        obj['img'] = `https://plum-elaborate-gecko-166.mypinata.cloud/ipfs/QmeePpAbxTpWafoZRCcCQfnKCB2gDMPeaT7tq6S6SDkE3N/${id}.png`
         nftData.push(obj)
       })
 
@@ -647,11 +647,11 @@ const HomePage = () => {
 
                 <span className="flex flex-row flex-justify mt-2 small-text-modal">
                   <span className="text-gray">Mouth</span>
-                  <span className="text-white">{data.metaData.attributes[4].value}</span>
+                  <span className="text-white">{data.metaData.attributes[5].value}</span>
                 </span>
                 <span className="flex flex-row flex-justify mt-2 small-text-modal">
                   <span className="text-gray">Head</span>
-                  <span className="text-white">{data.metaData.attributes[3].value}</span>
+                  <span className="text-white">{data.metaData.attributes[4].value}</span>
                 </span>
                 <span className="flex flex-row flex-justify mt-2 small-text-modal">
                   <span className="text-gray">Eyes</span>
@@ -663,7 +663,11 @@ const HomePage = () => {
                 </span>
                 <span className="flex flex-row flex-justify mt-2 small-text-modal">
                   <span className="text-gray">Outifit</span>
-                  <span className="text-white">{data.metaData.attributes[5].value}</span>
+                  <span className="text-white">{data.metaData.attributes[6].value}</span>
+                </span>
+                <span className="flex flex-row flex-justify mt-2 small-text-modal">
+                  <span className="text-gray">Feet</span>
+                  <span className="text-white">{data.metaData.attributes[3].value}</span>
                 </span>
                 <span className="flex flex-row flex-justify mt-2 small-text-modal">
                   <span className="text-gray">Background</span>

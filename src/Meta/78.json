@@ -1,11 +1,11 @@
 {
-  "name": "Common #78",
-  "description": "Blue Kirby NFTs Collection is a captivating blend of artistry, rarity, and the iconic Blue Kirby persona. Each NFT in this exclusive collection is a digital masterpiece, meticulously crafted to reflect the essence of Blue Kirby's journey and significance within the Fantom ecosystem.",
-  "image": "QmdVpWphPvs2fjvoAm6v3BkH4iXiRKiHtXEc8WSGpLx9rj/78.png",
+  "name": "Common Kirb #78",
+  "description": "Blue Friends NFTs Collection is a captivating blend of artistry, rarity, and the iconic Blue Kirby persona. Each NFT in this exclusive collection is a digital masterpiece, meticulously crafted to reflect the essence of Blue Kirby's journey and significance within the Fantom ecosystem.",
+  "image": "QmeePpAbxTpWafoZRCcCQfnKCB2gDMPeaT7tq6S6SDkE3N/78.png",
   "attributes": [
     {
       "trait_type": "Background",
-      "value": "Kimberly"
+      "value": "Hoki"
     },
     {
       "trait_type": "Body",
@@ -13,15 +13,19 @@
     },
     {
       "trait_type": "Eyes",
-      "value": "Yellow Laser"
+      "value": "3D Glasses"
+    },
+    {
+      "trait_type": "Feet",
+      "value": "Yellow Shoes"
     },
     {
       "trait_type": "Head",
-      "value": "Emerald Bandana"
+      "value": "Red Santa Cap"
     },
     {
       "trait_type": "Mouth",
-      "value": "Happy"
+      "value": "Rainbow"
     },
     {
       "trait_type": "Outfit",

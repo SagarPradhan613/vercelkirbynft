@@ -1,7 +1,7 @@
 {
-  "name": "Legendary #399",
+  "name": "Legendary Kirb #399",
   "description": "Harness the arcane with the Wizard Kirby NFT, a legendary sorcerer that adds a touch of mystique and magical flair to your digital collection.",
-  "image": "QmdVpWphPvs2fjvoAm6v3BkH4iXiRKiHtXEc8WSGpLx9rj/399.png",
+  "image": "QmeePpAbxTpWafoZRCcCQfnKCB2gDMPeaT7tq6S6SDkE3N/399.png",
   "attributes": [
     {
       "trait_type": "Background",
@@ -13,6 +13,10 @@
     },
     {
       "trait_type": "Eyes",
+      "value": "Wizard"
+    },
+    {
+      "trait_type": "Feet",
       "value": "Wizard"
     },
     {

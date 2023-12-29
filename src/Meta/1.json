@@ -1,7 +1,7 @@
 {
-  "name": "Legendary #1",
+  "name": "Legendary Kirb #1",
   "description": "Unleash the undead energy with the Zombie Kirby, a legendary NFT that adds a touch of eerie resilience to your collection.",
-  "image": "QmdVpWphPvs2fjvoAm6v3BkH4iXiRKiHtXEc8WSGpLx9rj/1.png",
+  "image": "QmeePpAbxTpWafoZRCcCQfnKCB2gDMPeaT7tq6S6SDkE3N/1.png",
   "attributes": [
     {
       "trait_type": "Background",
@@ -13,6 +13,10 @@
     },
     {
       "trait_type": "Eyes",
+      "value": "Zombie"
+    },
+    {
+      "trait_type": "Feet",
       "value": "Zombie"
     },
     {

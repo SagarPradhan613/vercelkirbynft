@@ -1,7 +1,7 @@
 {
-  "name": "Legendary #67",
-  "description": "Protector of the Kirby realm, the Guardian Kirby NFT embodies strength, vigilance, and an unwavering commitment to the Fantom ecosystem.",
-  "image": "QmdVpWphPvs2fjvoAm6v3BkH4iXiRKiHtXEc8WSGpLx9rj/67.png",
+  "name": "Legendary Kirb #67",
+  "description": "With an aura of toxicity, the Poisonous Kirby NFT injects a dose of lethal charm into your collection.",
+  "image": "QmeePpAbxTpWafoZRCcCQfnKCB2gDMPeaT7tq6S6SDkE3N/67.png",
   "attributes": [
     {
       "trait_type": "Background",
@@ -9,23 +9,27 @@
     },
     {
       "trait_type": "Body",
-      "value": "Guardian"
+      "value": "Poisonous"
     },
     {
       "trait_type": "Eyes",
-      "value": "Guardian"
+      "value": "Poisonous"
+    },
+    {
+      "trait_type": "Feet",
+      "value": "Poisonous"
     },
     {
       "trait_type": "Head",
-      "value": "Guardian"
+      "value": "Poisonous"
     },
     {
       "trait_type": "Mouth",
-      "value": "Guardian"
+      "value": "Poisonous"
     },
     {
       "trait_type": "Outfit",
-      "value": "Guardian"
+      "value": "Poisonous"
     }
   ]
 }

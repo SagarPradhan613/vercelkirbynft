@@ -1,31 +1,35 @@
 {
-  "name": "Legendary #231",
-  "description": "Embrace the silent strength and stealthy prowess of the Ninja Kirby NFT. This legendary warrior moves through your collection with unparalleled grace.",
-  "image": "QmdVpWphPvs2fjvoAm6v3BkH4iXiRKiHtXEc8WSGpLx9rj/231.png",
+  "name": "Common Kirb #231",
+  "description": "Blue Friends NFTs Collection is a captivating blend of artistry, rarity, and the iconic Blue Kirby persona. Each NFT in this exclusive collection is a digital masterpiece, meticulously crafted to reflect the essence of Blue Kirby's journey and significance within the Fantom ecosystem.",
+  "image": "QmeePpAbxTpWafoZRCcCQfnKCB2gDMPeaT7tq6S6SDkE3N/231.png",
   "attributes": [
     {
       "trait_type": "Background",
-      "value": "Light Skin"
+      "value": "Swamp"
     },
     {
       "trait_type": "Body",
-      "value": "Ninja"
+      "value": "Blue Kirby"
     },
     {
       "trait_type": "Eyes",
-      "value": "Ninja"
+      "value": "Purple Glasses"
+    },
+    {
+      "trait_type": "Feet",
+      "value": "Black Shoes"
     },
     {
       "trait_type": "Head",
-      "value": "Ninja"
+      "value": "Cowboy Hat"
     },
     {
       "trait_type": "Mouth",
-      "value": "Ninja"
+      "value": "Flat"
     },
     {
       "trait_type": "Outfit",
-      "value": "Ninja"
+      "value": "Green Hoodie"
     }
   ]
 }

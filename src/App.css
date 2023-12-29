@@ -73,7 +73,7 @@ button.btn-checkout {
 .show-in-mobile {
   display: none;
   position: relative;
-  z-index: 1000;
+  z-index: 100;
 }
 
 .img-responsive {
@@ -135,7 +135,7 @@ input.mint-value {
 .bg-wrapper {
   background-color: #202d50;
   border-radius: 20px;
-  z-index: 1000;
+  z-index: 100;
   position: relative;
 }
 .footer {
@@ -387,6 +387,7 @@ img.character.eight {
 }
 .responsive-menu.show-menu {
   left: 0;
+z-index: 1000;
 }
 .carousel.carousel-slider {
   overflow: visible !important;
@@ -444,7 +445,7 @@ img.character.eight {
   }
   .show-in-mobile {
     display: block;
-    z-index: 1000;
+    z-index: 100;
     position: relative;
   }
   .main-wrapper {

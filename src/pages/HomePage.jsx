@@ -250,21 +250,21 @@ const HomePage = () => {
         <div class="bubble">
           <Image
             src={Images.characterOne}
-            className="character one hide-on-small"
+            className="character one "
             alt="Character One"
           />
         </div>
         <div class="bubble">
           <Image
             src={Images.characterTwo}
-            className="character one hide-on-small"
+            className="character one "
             alt="Character One"
           />
         </div>
         <div class="bubble">
           <Image
             src={Images.characterThree}
-            className="character one hide-on-small"
+            className="character one "
             alt="Character One"
           />
         </div>

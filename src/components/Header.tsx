@@ -14,7 +14,7 @@ const Header = ({ handleShowConnect }: any): ReactElement<React.FC> => {
         setShowMenu(false);
         handleShowConnect();
     }
-    
+
     const { address } = useAccount()
     const disconnect = useDisconnect()
 
@@ -26,11 +26,14 @@ const Header = ({ handleShowConnect }: any): ReactElement<React.FC> => {
                         <Image src={Images.logo} alt="Logo" className="logo" />
                     </Col>
                     <Col xl={6} md={6} sm={6} xs={4} className="hide-in-mobile text-end">
-                      { address ? <button type="button" onClick={() => disconnect?.disconnect()} className="button">{address.slice(0,7)}...{address.slice(-7)}</button> : <button type="button" onClick={showConnectModal} className="button">CONNECT</button> }  
+                        {address ? <button type="button" onClick={() => disconnect?.disconnect()} className="button">{address.slice(0, 7)}...{address.slice(-7)}</button> : <button type="button" onClick={showConnectModal} className="button">CONNECT</button>}
                     </Col>
-                    <Col xl={6} md={6} sm={6} xs={2} className="show-in-mobile text-end mr-2">
-                        <Image src={Images.meuIcon} alt="Menu Icon" onClick={() => setShowMenu(true)} />
-                    </Col>
+                    {
+                        !showMenu && <Col xl={6} md={6} sm={6} xs={2} className="show-in-mobile text-end mr-2">
+                            <Image src={Images.meuIcon} alt="Menu Icon" onClick={() => setShowMenu(true)} />
+                        </Col>
+                    }
+
                 </Row>
             </Col>
             <Col className={showMenu ? 'responsive-menu show-menu p-4' : 'responsive-menu p-4'}>
@@ -39,7 +42,7 @@ const Header = ({ handleShowConnect }: any): ReactElement<React.FC> => {
                     <Image src={Images.closeIcon} alt="" onClick={() => setShowMenu(false)} />
                 </Col>
                 <Col>
-                 { address ? <button type="button" className="button full mt-4" onClick={() => disconnect?.disconnect()}>{address.slice(0,4)}...{address.slice(-4)}</button> :   <button type="button" className="button full mt-4" onClick={showConnectModal}>Connect</button>}
+                    {address ? <button type="button" className="button full mt-4" onClick={() => disconnect?.disconnect()}>{address.slice(0, 4)}...{address.slice(-4)}</button> : <button type="button" className="button full mt-4" onClick={showConnectModal}>Connect</button>}
                 </Col>
                 <Col className="text-center m-100">
                     <a href="https://t.me/bluekirbyftm" target="_blank" rel="noopener noreferrer"><Image src={Images.telegramIcon} /></a> &nbsp;

@@ -1,4 +1,4 @@
-import React, { ReactElement, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../components/Header";
 import { Col, Row, Image, Container } from "react-bootstrap";
 import Images from "../shared/Images";
@@ -18,7 +18,6 @@ import { inoabi } from "../abis/ino";
 import BigNumber from "bignumber.js";
 import { writeContract } from "@wagmi/core";
 import { ethers } from "ethers";
-
 
 const inoAdd = process.env.REACT_APP_INO;
 
@@ -42,7 +41,9 @@ const HomePage = () => {
   const [totalMint, settotalMint] = useState(0);
   const [nftData, setNftData] = useState([]);
   const { chain } = useNetwork();
-  const etherProvider = new ethers.providers.JsonRpcProvider(chain?.rpcUrls?.public?.http[0]);
+  const etherProvider = new ethers.providers.JsonRpcProvider(
+    chain?.rpcUrls?.public?.http[0]
+  );
 
   const { connect, connectors, isLoading, pendingConnector } = useConnect();
 
@@ -61,28 +62,28 @@ const HomePage = () => {
   useEffect(() => {
     const globalCalls = async () => {
       try {
-      const ismintLive = await inoContract.read.claimenabled();
-      setisMintLive(ismintLive);
+        const ismintLive = await inoContract.read.claimenabled();
+        setisMintLive(ismintLive);
 
-      setDecimal(18);
-      const priceWei = await inoContract.read.price();
-      setPriceWei(priceWei);
+        setDecimal(18);
+        const priceWei = await inoContract.read.price();
+        setPriceWei(priceWei);
 
-      const price = new BigNumber(priceWei).div(1e18);
-      setPrice(price.toFixed());
+        const price = new BigNumber(priceWei).div(1e18);
+        setPrice(price.toFixed());
       } catch (error) {
         console.error(error);
       }
     };
 
     const totalMintCalls = async () => {
-       try {
+      try {
         const totalmint = await inoContract.read.claimIndex();
         settotalMint(Number(totalmint));
-       } catch (error) {
+      } catch (error) {
         console.error(error);
-       }
-    }
+      }
+    };
 
     const userCalls = async () => {
       try {
@@ -97,15 +98,15 @@ const HomePage = () => {
               .div(`1e${Number(decimal)}`);
             setremaining(mintable.toFixed(0));
           }
-  
+
           const balance = await inoContract.read.checkbalance([address]);
           setuserTokenBal(balance);
-  
+
           const isWhitelisted = await inoContract.read.isWhitelisted([address]);
           setisWhiteListed(isWhitelisted);
         }
       } catch (error) {
-        console.error(error)
+        console.error(error);
       }
     };
 
@@ -124,13 +125,13 @@ const HomePage = () => {
       }, 5000); // Adjust the interval time as needed (5000 milliseconds in this example)
 
     const mintInterval = setInterval(() => {
-        totalMintCalls(); // Call userCalls repeatedly at the specified interval only if address is present
-      }, 5000); // Adjust the interval time as needed (5000 milliseconds in this example)
+      totalMintCalls(); // Call userCalls repeatedly at the specified interval only if address is present
+    }, 5000); // Adjust the interval time as needed (5000 milliseconds in this example)
 
     // Clear the interval when the component unmounts or when the dependency array changes
     return () => {
-      clearInterval(userCallsInterval)
-      clearInterval(mintInterval) 
+      clearInterval(userCallsInterval);
+      clearInterval(mintInterval);
     };
   }, [address, inoContract]);
 
@@ -206,26 +207,27 @@ const HomePage = () => {
         args: [mintValue],
         value: new BigNumber(priceWei).mul(mintValue).toString(),
       });
-         
+
       const receipt = await etherProvider.waitForTransaction(hash);
       console.log("receipt", receipt);
 
-      const logs =  receipt?.logs?.filter((data) => {
+      const logs = receipt?.logs?.filter((data) => {
         return data?.address?.toLowerCase() === inoAdd.toLowerCase();
-      })
- 
-      const nftData = []
+      });
+
+      const nftData = [];
       logs.forEach((data) => {
         const obj = {};
-        const id = parseInt(data.topics[2], 16)
-        obj['nftId'] = id 
-        obj['metaData'] = require(`../Meta/${id}.json`);
-        obj['img'] = `https://plum-elaborate-gecko-166.mypinata.cloud/ipfs/QmeePpAbxTpWafoZRCcCQfnKCB2gDMPeaT7tq6S6SDkE3N/${id}.png`
-        nftData.push(obj)
-      })
+        const id = parseInt(data.topics[2], 16);
+        obj["nftId"] = id;
+        obj["metaData"] = require(`../Meta/${id}.json`);
+        obj[
+          "img"
+        ] = `https://plum-elaborate-gecko-166.mypinata.cloud/ipfs/QmeePpAbxTpWafoZRCcCQfnKCB2gDMPeaT7tq6S6SDkE3N/${id}.png`;
+        nftData.push(obj);
+      });
 
       setNftData(nftData);
-       
     } catch (error) {
       console.log("error", error.message);
       throw error;
@@ -243,46 +245,51 @@ const HomePage = () => {
   return (
     <Col>
       <Header handleShowConnect={handleShowConnect} />
-      <Image
-        src={Images.characterOne}
-        className="character one hide-on-small"
-        alt="Character One"
-      />
-      <Image
-        src={Images.characterTwo}
-        className="character two hide-on-small"
-        alt="Character One"
-      />
-      <Image
-        src={Images.characterThree}
-        className="character three hide-on-small"
-        alt="Character One"
-      />
-      <Image
-        src={Images.characterTwo}
-        className="character four hide-on-small"
-        alt="Character One"
-      />
-      <Image
-        src={Images.characterThree}
-        className="character five hide-on-small"
-        alt="Character One"
-      />
-      <Image
-        src={Images.characterTwo}
-        className="character six hide-on-small"
-        alt="Character One"
-      />
-      <Image
-        src={Images.characterOne}
-        className="character seven hide-on-small"
-        alt="Character One"
-      />
-      <Image
-        src={Images.characterTwo}
-        className="character eight hide-on-small"
-        alt="Character One"
-      />
+
+      <div class="bubbles">
+        <div class="bubble">
+          <Image
+            src={Images.characterOne}
+            className="character one hide-on-small"
+            alt="Character One"
+          />
+        </div>
+        <div class="bubble">
+          <Image
+            src={Images.characterTwo}
+            className="character one hide-on-small"
+            alt="Character One"
+          />
+        </div>
+        <div class="bubble">
+          <Image
+            src={Images.characterThree}
+            className="character one hide-on-small"
+            alt="Character One"
+          />
+        </div>
+        <div class="bubble">
+          <Image
+            src={Images.characterOne}
+            className="character one hide-on-small"
+            alt="Character One"
+          />
+        </div>
+        <div class="bubble">
+          <Image
+            src={Images.characterTwo}
+            className="character one hide-on-small"
+            alt="Character One"
+          />
+        </div>
+        <div class="bubble">
+          <Image
+            src={Images.characterThree}
+            className="character one hide-on-small"
+            alt="Character One"
+          />
+        </div>
+      </div>
       <Row className="main-content">
         {isMintLive && (
           <h3 className="text-center text-white mt-5 show-in-mobile">
@@ -291,7 +298,9 @@ const HomePage = () => {
         )}
         <Col xl={6} md={6} sm={12} xs={12} className="m-10 text-center">
           <Image
-            src={Images.leftsideImg}
+            src={
+              "https://kirbygif.s3.eu-north-1.amazonaws.com/New+Blue+Kirby.gif"
+            }
             alt="Left side image"
             className="img-responsive"
           />
@@ -351,7 +360,7 @@ const HomePage = () => {
           </Col>
 
           <p className="text-center text-white mt-5  bellow-img h6">
-            NFTs Minted:: {totalMint}/511 
+            NFTs Minted:: {totalMint}/511
           </p>
           {address && isMintLive && isWhiteListed && (
             <button
@@ -651,45 +660,56 @@ const HomePage = () => {
               {nftData?.map((data, index) => (
                 <div className="blue-bg" key={index}>
                   <img src={data.img} alt="" />
-               
-                <span className="flex flex-row flex-justify mt-2 small-text-modal">
-                  <span className="text-gray">Id</span>
-                  <span className="text-white">{data.nftId}</span>
-                </span>      
 
-                <span className="flex flex-row flex-justify mt-2 small-text-modal">
-                  <span className="text-gray">Mouth</span>
-                  <span className="text-white">{data.metaData.attributes[5].value}</span>
-                </span>
-                <span className="flex flex-row flex-justify mt-2 small-text-modal">
-                  <span className="text-gray">Head</span>
-                  <span className="text-white">{data.metaData.attributes[4].value}</span>
-                </span>
-                <span className="flex flex-row flex-justify mt-2 small-text-modal">
-                  <span className="text-gray">Eyes</span>
-                  <span className="text-white">{data.metaData.attributes[2].value}</span>
-                </span>
-                <span className="flex flex-row flex-justify mt-2 small-text-modal">
-                  <span className="text-gray">Body</span>
-                  <span className="text-white">{data.metaData.attributes[1].value}</span>
-                </span>
-                <span className="flex flex-row flex-justify mt-2 small-text-modal">
-                  <span className="text-gray">Outifit</span>
-                  <span className="text-white">{data.metaData.attributes[6].value}</span>
-                </span>
-                <span className="flex flex-row flex-justify mt-2 small-text-modal">
-                  <span className="text-gray">Feet</span>
-                  <span className="text-white">{data.metaData.attributes[3].value}</span>
-                </span>
-                <span className="flex flex-row flex-justify mt-2 small-text-modal">
-                  <span className="text-gray">Background</span>
-                  <span className="text-white">{data.metaData.attributes[0].value}</span>
-                </span>
+                  <span className="flex flex-row flex-justify mt-2 small-text-modal">
+                    <span className="text-gray">Id</span>
+                    <span className="text-white">{data.nftId}</span>
+                  </span>
+
+                  <span className="flex flex-row flex-justify mt-2 small-text-modal">
+                    <span className="text-gray">Mouth</span>
+                    <span className="text-white">
+                      {data.metaData.attributes[5].value}
+                    </span>
+                  </span>
+                  <span className="flex flex-row flex-justify mt-2 small-text-modal">
+                    <span className="text-gray">Head</span>
+                    <span className="text-white">
+                      {data.metaData.attributes[4].value}
+                    </span>
+                  </span>
+                  <span className="flex flex-row flex-justify mt-2 small-text-modal">
+                    <span className="text-gray">Eyes</span>
+                    <span className="text-white">
+                      {data.metaData.attributes[2].value}
+                    </span>
+                  </span>
+                  <span className="flex flex-row flex-justify mt-2 small-text-modal">
+                    <span className="text-gray">Body</span>
+                    <span className="text-white">
+                      {data.metaData.attributes[1].value}
+                    </span>
+                  </span>
+                  <span className="flex flex-row flex-justify mt-2 small-text-modal">
+                    <span className="text-gray">Outifit</span>
+                    <span className="text-white">
+                      {data.metaData.attributes[6].value}
+                    </span>
+                  </span>
+                  <span className="flex flex-row flex-justify mt-2 small-text-modal">
+                    <span className="text-gray">Feet</span>
+                    <span className="text-white">
+                      {data.metaData.attributes[3].value}
+                    </span>
+                  </span>
+                  <span className="flex flex-row flex-justify mt-2 small-text-modal">
+                    <span className="text-gray">Background</span>
+                    <span className="text-white">
+                      {data.metaData.attributes[0].value}
+                    </span>
+                  </span>
                 </div>
               ))}
-             
-             
-            
             </Carousel>
           </Col>
 

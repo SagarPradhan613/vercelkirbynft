@@ -163,6 +163,7 @@ input.mint-value {
 }
 .modal-overlay.show-overlay {
   transform: scale(1, 1);
+  z-index: 1000;
 }
 .modal-overlay .modal-container {
   width: 35%;

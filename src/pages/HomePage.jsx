@@ -39,6 +39,7 @@ const HomePage = () => {
   const [remaining, setremaining] = useState(0);
   const [userTokenBal, setuserTokenBal] = useState(0);
   const [isWhiteListed, setisWhiteListed] = useState(false);
+  const [totalMint, settotalMint] = useState(0);
   const [nftData, setNftData] = useState([]);
   const { chain } = useNetwork();
   const etherProvider = new ethers.providers.JsonRpcProvider(chain?.rpcUrls?.public?.http[0]);
@@ -70,6 +71,11 @@ const HomePage = () => {
       setPrice(price.toFixed());
     };
 
+    const totalMintCalls = async () => {
+       const totalmint = await inoContract.read.claimIndex();
+       settotalMint(Number(totalmint));
+    }
+
     const userCalls = async () => {
       if (address) {
         const decimal = 18;
@@ -97,14 +103,23 @@ const HomePage = () => {
       userCalls(); // Call userCalls initially if address is present
     }
 
+    totalMintCalls();
+
     const userCallsInterval =
       address &&
       setInterval(() => {
         userCalls(); // Call userCalls repeatedly at the specified interval only if address is present
       }, 5000); // Adjust the interval time as needed (5000 milliseconds in this example)
 
+    const mintInterval = setInterval(() => {
+        totalMintCalls(); // Call userCalls repeatedly at the specified interval only if address is present
+      }, 5000); // Adjust the interval time as needed (5000 milliseconds in this example)
+
     // Clear the interval when the component unmounts or when the dependency array changes
-    return () => clearInterval(userCallsInterval);
+    return () => {
+      clearInterval(userCallsInterval)
+      clearInterval(mintInterval) 
+    };
   }, [address, inoContract]);
 
   const incrementMint = () => {
@@ -322,6 +337,10 @@ const HomePage = () => {
               </svg>
             </button>
           </Col>
+
+          <p className="text-center text-white mt-5  bellow-img h6">
+            NFT Counter: {totalMint} 
+          </p>
           {address && isMintLive && isWhiteListed && (
             <button
               type="button"

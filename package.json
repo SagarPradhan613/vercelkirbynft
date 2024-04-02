@@ -16,7 +16,6 @@
     "connectkit": "^1.5.3",
     "ethers": "^5.7.2",
     "react": "^18.2.0",
-    "react-bootstrap": "^2.9.2",
     "react-dom": "^18.2.0",
     "react-responsive-carousel": "^3.2.23",
     "react-scripts": "5.0.1",
@@ -50,5 +49,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.3"
   }
 }

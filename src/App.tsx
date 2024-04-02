@@ -4,7 +4,7 @@ import React, { ReactElement, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import HomePage from "./pages/HomePage";
-import { Col } from "react-bootstrap";
+// import { Col } from "react-bootstrap";
 import Footer from "./components/Footer";
 import { useNetwork, useSwitchNetwork } from "wagmi";
 
@@ -21,11 +21,11 @@ const App = (): ReactElement<React.FC> => {
 
   return (
     <>
-      <Col className="main-wrapper">
+      <div className="main-wrapper">
         {/* <ConnectKitButton /> */}
         <HomePage />
-      </Col>
-      <Footer />
+      </div>
+      {/* <Footer /> */}
     </>
   );
 };

@@ -1,7 +1,7 @@
 .MainHeaderContainer {
     padding-top: 1rem;
     padding-bottom: 1rem;
-    
+
     justify-content: space-between;
     align-items: center;
     width: 100%;
@@ -10,17 +10,18 @@
 
 
 
-.HeaderRightPortion{
+.HeaderRightPortion {
     /* display: flex; */
     align-items: center;
 }
 
-.rightLinkContainer{
+.rightLinkContainer {
     display: flex;
     gap: 2rem;
     font-size: 18px;
     align-items: center;
 }
+
 .HeaderLeftPortion {
     display: flex;
     align-items: center;
@@ -51,53 +52,182 @@
     font-size: 18px;
     text-decoration: none;
     font-weight: 500;
+    transition: all 0.3s ease-in-out;
 }
 
-@media screen and (max-width:710px) {
+.dec-svg path{
+    transition: all 0.3s ease-in-out;
+}
+
+.dec:hover .dec-svg path{
+    stroke: rgb(133, 133, 133);
+}
+
+.inc-svg path{
+    transition: all 0.3s ease-in-out;
+}
+
+.inc:hover .inc-svg path{
+    stroke: rgb(133, 133, 133);
+}
+
+.price{
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+    color: #FF720D;
+}
+
+.bnb{
+    color: white;
+    transition: all 0.3s ease-in-out;
+}
+
+.bnbcontinaer:hover .bnb{
+    color: rgb(150, 147, 147);
+}
+
+.price:hover{
+    color: #b6540f !important;
+}
+
+.head-links:hover {
+    color: #b6540f !important;
+}
+.svg-hover circle{
+    transition: all 0.3s ease-in-out;
+}
+
+.spcl-container:hover .svg-hover circle {
+    fill: #b6540f !important;
+}
+
+@media screen and (max-width:1024px) {
     .MainHeaderContainer {
         padding-left: 0.5rem;
         padding-right: 0.5rem;
     }
+
     .logo-container {
         max-width: 150px;
     }
 }
 
-@media screen and (min-width:711px) {
+@media screen and (min-width:1401px) {
     .MainHeaderContainer {
         padding-left: 6rem;
         padding-right: 6rem;
     }
 }
 
-@media screen and (min-width:1024px) and (max-width:1400px) {
-    .leftLinkContainer{
+/* @media screen and (min-width:1024px) and (max-width:1400px) {
+    .leftLinkContainer {
         margin-left: 1rem !important;
         gap: 1rem !important;
     }
-    .MainHeaderContainer{
+
+    .MainHeaderContainer {
         padding-left: 2rem !important;
         padding-right: 2rem !important;
     }
-    .head-links{
+
+    .head-links {
         font-size: 12px !important;
     }
-    .rightLinkContainer{
+
+    .rightLinkContainer {
         font-size: 12px !important;
         gap: 1rem !important;
     }
-    .HeaderRightPortion{
+
+    .HeaderRightPortion {
         margin-left: 1rem !important;
     }
-    .bnb{
+
+    .bnb {
         font-size: 12px !important;
     }
-    .connect{
+
+    .connect {
         font-size: 12px !important;
     }
-    .coin-img{
+
+    .coin-img {
+        height: 30px !important;
+        width: 30px !important;
+    }
+} */
+@media screen and (max-width:710px)  {
+    .leftLinkContainer {
+        margin-left: 1rem !important;
+        gap: 1rem !important;
+    }
+
+    .MainHeaderContainer {
+        padding-left: 2rem !important;
+        padding-right: 2rem !important;
+    }
+
+    .head-links {
+        font-size: 12px !important;
+    }
+
+    .rightLinkContainer {
+        font-size: 12px !important;
+        gap: 1rem !important;
+    }
+
+    .HeaderRightPortion {
+        margin-left: 1rem !important;
+    }
+
+    .bnb {
+        font-size: 12px !important;
+    }
+
+    .connect {
+        font-size: 12px !important;
+    }
+
+    .coin-img {
         height: 30px !important;
         width: 30px !important;
     }
 }
 
+@media screen and (min-width:711px) and (max-width:1400px) {
+    .leftLinkContainer {
+        margin-left: 1rem !important;
+        gap: 1rem !important;
+    }
+
+    .MainHeaderContainer {
+        padding-left: 2rem !important;
+        padding-right: 2rem !important;
+    }
+
+    .head-links {
+        font-size: 12px !important;
+    }
+
+    .rightLinkContainer {
+        font-size: 12px !important;
+        gap: 1rem !important;
+    }
+
+    .HeaderRightPortion {
+        margin-left: 1rem !important;
+    }
+
+    .bnb {
+        font-size: 12px !important;
+    }
+
+    .connect {
+        font-size: 12px !important;
+    }
+
+    .coin-img {
+        height: 30px !important;
+        width: 30px !important;
+    }
+}

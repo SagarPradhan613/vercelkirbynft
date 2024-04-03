@@ -779,20 +779,21 @@ img.character.eight {
   font-size: 30px;
 }
 
-@media screen and (min-width:710px) and (max-height:780px) {
+@media screen and (min-width:1024px) and (max-height:780px) {
   .social-container {
     margin-top: -4rem;
     margin-bottom: 4rem;
   }
 }
 
-@media screen and (min-width:710px) and (min-height:781px) and (max-height:1000px) {
+@media screen and (min-width:1024px) and (min-height:781px) and (max-height:1000px) {
   .social-container {
     margin-top: -2rem;
+    margin-bottom: 2rem;
   }
 }
 
-@media screen and (max-width:710px) {
+@media screen and (max-width:1024px) {
   .social-container {
     margin-top: 1rem;
     margin-bottom: 2rem;

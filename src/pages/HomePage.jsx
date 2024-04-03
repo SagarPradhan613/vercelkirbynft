@@ -242,9 +242,11 @@ const HomePage = () => {
     setMintLength(newMintLength);
   }, [mintValue]);
 
+  console.log(showConnect,"showconnect")
+
   return (
     <div>
-      <Header handleShowConnect={handleShowConnect} />
+      <Header showConnect={setShowConnect} setShowConnect={setShowConnect}  handleShowConnect={handleShowConnect} />
 
       <div className="h-full py-6 res-px flex lg:px-44 lg:py-36 lg:flex-row flex-col gap-4  w-full">
         <div className="a  lg:w-[40%] justify-center res-main-left  items-center  w-full lg:min-h-[500px] ">

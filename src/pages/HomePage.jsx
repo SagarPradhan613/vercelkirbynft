@@ -246,25 +246,25 @@ const HomePage = () => {
     <div>
       <Header handleShowConnect={handleShowConnect} />
 
-      <div className="h-full flex lg:px-48 lg:py-36 lg:flex-row flex-col gap-4  w-full">
-        <div className="a  lg:w-[40%] justify-center  items-center  w-full lg:min-h-[500px] ">
+      <div className="h-full py-6 res-px flex lg:px-44 lg:py-36 lg:flex-row flex-col gap-4  w-full">
+        <div className="a  lg:w-[40%] justify-center res-main-left  items-center  w-full lg:min-h-[500px] ">
           <img src="/Images/knightleft.png" className="h-full w-full"></img>
         </div>
 
-        <div className="b w-full lg:min-h-[500px] lg:w-[60%] justify-center flex items-center ">
-          <div className="bg-[#1E2B45] flex justify-between flex-col border-[#423e4e] border-[1px]  py-16 px-10 h-full w-full rounded-[20px]">
+        <div className="b w-full res-main-right lg:min-h-[500px] lg:w-[60%] justify-center flex items-center ">
+          <div className="bg-[#1E2B45] flex justify-between flex-col border-[#423e4e] border-[1px]  py-10 px-4 lg:py-16 lg:px-10 h-full w-full rounded-[20px]">
             <div>
               <div className="flex w-full items-center justify-center">
-                <p className="text-white lg:text-6xl text-3xl text-center font-semibold">Mint is Live Now</p>
+                <p className="text-white lg:text-6xl res-head-text text-3xl text-center font-semibold">Mint is Live Now</p>
               </div>
               <div className="flex justify-center mt-4 items-center w-full">
-                <p className="text-white text-sm font-semibold opacity-50 text-center lg:w-[80%] lg:text-lg ">Blue Kirby NFTs are ready to be minted. Mint yours for free from below!</p>
+                <p className="text-white text-sm res-para-text font-semibold opacity-50 text-center lg:w-[80%] lg:text-lg ">Blue Kirby NFTs are ready to be minted. Mint yours for free from below!</p>
               </div>
             </div>
 
 
             <div>
-              <div className="flex  lg:flex-row flex-col gap-4 w-full">
+              <div className="flex mt-10 lg:mt-0 lg:flex-row flex-col gap-3 lg:gap-4 w-full">
                 <div className="lg:w-[60%] w-full p-2 bg-[#121d32] rounded-[20px] flex items-center justify-between ">
                   <button type="button" onClick={decrementMint} className="bg-[#1E2B45]  rounded-[20px]  w-[20%] h-[50px] flex justify-center  items-center ">
                     <svg width="14" height="5" viewBox="0 0 14 5" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -287,12 +287,13 @@ const HomePage = () => {
 
 
                 {address && isMintLive && isWhiteListed && (
-                  <div className=" w-full lg:w-[30%]">
-                    <button onClick={handleShowMint} type="button" className="bg-[#FF720D] rounded-[19.5px] text-white flex text-lg font-bold h-full w-full items-center justify-center text-center" >
-                      Mint now
-                    </button>
-                  </div>
+                 <div className=" w-full lg:w-[30%]">
+                  <button onClick={handleShowMint} type="button" className="bg-[#FF720D] py-3 lg:py-0 rounded-[19.5px] text-white flex text-lg font-bold h-full w-full items-center justify-center text-center" >
+                    Mint now
+                  </button>
+                </div>
                 )}
+                
 
 
               </div>
@@ -309,7 +310,8 @@ const HomePage = () => {
 
 
       </div>
-      <div className="mt-10 gap-8 flex w-full justify-center items-center">
+
+      <div className="mt-10 social-container gap-8 flex w-full justify-center items-center">
         <a href="https://t.me/bluekirbyftm" target="_blank">
           <svg width="32" height="29" viewBox="0 0 32 29" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M29.1304 0.982432C29.1304 0.982432 32.0763 -0.199093 31.8308 2.67033C31.749 3.85187 31.0125 7.9872 30.4397 12.4602L28.4757 25.7102C28.4757 25.7102 28.3121 27.6512 26.8391 27.9888C25.3661 28.3264 23.1567 26.8073 22.7475 26.4697C22.4202 26.2165 16.6102 22.4187 14.5644 20.5621C13.9915 20.0557 13.3369 19.0429 14.6462 17.8614L23.2385 9.42196C24.2205 8.4092 25.2025 6.04615 21.1109 8.91558L9.65452 16.9331C9.65452 16.9331 8.34522 17.777 5.89032 17.0175L0.57126 15.3296C0.57126 15.3296 -1.39269 14.0637 1.96239 12.7977C10.1455 8.83112 20.2108 4.78016 29.1304 0.982432Z" fill="#DAE7FF" />
@@ -336,6 +338,417 @@ const HomePage = () => {
         </a>
 
       </div>
+
+      {/* Connect modal */}
+      <div
+        className={showConnect ? "modal-overlay show-overlay" : "modal-overlay"}
+      // className="modal-overlay show-overlay"
+      >
+        <div
+          className={
+            showConnect
+              ? "modal-container show-connect-modal"
+              : "modal-container"
+          }
+
+        // className="modal-container show-connect-modal"
+
+        >
+
+          {/* <img
+            src={Images.connectModalTop}
+            alt="Connect modal"
+            className=""
+            width={280}
+          /> */}
+          <div className="w-full items-center px-3 py-3 flex justify-between">
+            <p className="text-white  font-bold lg:text-3xl text-xl">Select Provider</p>
+
+            <span onClick={handleCloseConnect}>
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M16.6684 1.5L2.09732 16.0711" stroke="white" stroke-width="2" stroke-linecap="round" />
+                <path d="M15.9024 16.071L1.33136 1.49997" stroke="white" stroke-width="2" stroke-linecap="round" />
+              </svg>
+            </span>
+          </div>
+
+
+          <div className=" mb-3 flex lg:flex-row  modal-button">
+            <button
+              className="bg-[#121D32] flex flex-col justify-center items-center text-white"
+              disabled={!walletConnectConnector.ready}
+              key={walletConnectConnector.id}
+              onClick={() => {
+                connect({ connector: walletConnectConnector });
+                handleCloseConnect();
+              }}
+              type="button"
+            >
+              <div className="wallet-connect-img-container">
+                <img src={Images.connectModalBgOne} alt="Button BG" />
+              </div>
+
+
+              <p>Wallet Connect</p>
+              {!walletConnectConnector.ready && " (unsupported)"}
+            </button>
+            <button
+              className="bg-[#121D32] flex flex-col justify-center items-center text-white"
+              disabled={!metaMaskConnector.ready}
+              key={metaMaskConnector.id}
+              onClick={() => {
+                connect({ connector: metaMaskConnector });
+                handleCloseConnect();
+              }}
+              type="button"
+            >
+              <img src={Images.connectModalBgTwo} alt="Button BG" />
+
+              <p>Metamask</p>
+            </button>
+            <button
+              className="bg-[#121D32] flex flex-col justify-center items-center text-white"
+              disabled={!injectedConnector.ready}
+              key={injectedConnector.id}
+              onClick={() => {
+                connect({ connector: injectedConnector });
+                handleCloseConnect();
+              }}
+              type="button"
+            >
+              <img src={Images.connectModalBgThree} alt="Button BG" />
+
+              <p>Trust Wallet</p>
+            </button>
+          </div>
+        </div>
+      </div>
+      {/* Mint modal */}
+      <div
+        className={showMint ? "modal-overlay show-overlay" : "modal-overlay"}
+      // className="modal-overlay show-overlay"
+      >
+        <div
+          className={
+            showMint ? "modal-container show-connect-modal" : "modal-container"
+          }
+        // className="modal-container show-connect-modal"
+        >
+
+          <div className="mt-2 mb-3">
+            <div>
+              <div xl={7} md={7} sm={12} xs={12}>
+                {/* <h4 className="text-center mb-4 show-in-mobile text-white">
+                  Details
+                </h4> */}
+                <div className="w-full items-center px-3 py-3 flex justify-between">
+
+                  <h6 className="text-white font-semibold lg:text-2xl text-xl">
+                    Details
+                  </h6>
+
+                  <span onClick={handleCloseMint}>
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M16.6684 1.5L2.09732 16.0711" stroke="white" stroke-width="2" stroke-linecap="round" />
+                      <path d="M15.9024 16.071L1.33136 1.49997" stroke="white" stroke-width="2" stroke-linecap="round" />
+                    </svg>
+                  </span>
+
+                </div>
+                <div className="modal-left-container">
+                  <p>
+                    YOU ARE ABOUT TO MINT <strong className="ml-1">{mintValue} NFT</strong>
+                  </p>
+                  <div className="modal-inner-container mt-6 flex flex-row flex-justify flex-middle">
+                    <span className="flex flex-row">
+                      <img src={Images.bllingIcon} alt="" /> &nbsp;
+                      <span className="flex flex-col ml-2 flex-divumn flex-start">
+                        <small>
+                          <small>
+                            <small className="text-white">
+                              {address?.slice(0, 6)}....{address?.slice(-6)}
+                            </small>
+                          </small>
+                        </small>
+                        <small>
+                          <small className="fantom text-white">FANTOM</small>
+                        </small>
+                      </span>
+                    </span>
+                    <span className="dots"></span>&nbsp;
+                    <small>
+                      <small className="text-success text-[12px]">Connected</small>
+                    </small>
+                  </div>
+                  <div className="mt-3 details">
+                    <span className="flex flex-row flex-justify mt-1">
+                      <small>
+                        {price} FTM x {mintValue} NFTs
+                      </small>
+                      <strong>
+                        {(price * mintValue).toFixed(3)} FTM Approx.
+                      </strong>
+                    </span>
+                    <span className="divider mt-2 mb-2"></span>
+                    <span className="flex flex-row flex-justify mt-1">
+                      <small>Balance</small>
+                      <strong>
+                        {new BigNumber(userTokenBal).div(1e18).toFixed(4)} FTM
+                      </strong>
+                    </span>
+                    <span className="flex flex-row flex-justify mt-1">
+                      <small>You will pay</small>
+                      <strong>
+                        {(price * mintValue).toFixed(3)} FTM Approx.
+                      </strong>
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div xl={5} md={5} sm={12} xs={12}>
+                {/* <h4 className="text-center hide-in-mobile text-white">
+                  Details
+                </h4> */}
+                {/* <img
+                  src={Images.modalBg}
+                  alt="Charater"
+                  width={180}
+                  height={140}
+                  className="mt-4 hide-in-mobile"
+                /> */}
+                <button
+                  disabled={new BigNumber(userTokenBal).lessThan(
+                    new BigNumber(priceWei).mul(mintValue)
+                  )}
+                  type="button"
+                  className="button full btn-checkout mt-4"
+                  onClick={handleShowCheckoutModal}
+                >
+                  Mint Now
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Success modal */}
+      <div
+        className={
+          congatulationModal ? "modal-overlay show-overlay" : "modal-overlay"
+        }
+      // className="modal-overlay show-overlay"
+      >
+        <div
+          className={
+            congatulationModal
+              ? "modal-container show-success-modal"
+              : "modal-container"
+          }
+        // className="modal-container show-success-modal"
+        >
+
+          <div className="w-full items-center px-3  py-3 flex justify-between">
+            <p className="text-white  font-bold lg:text-3xl text-xl">Congratulations!</p>
+
+            <span className="" onClick={handleCloseCngratulationModal}>
+              {/* X */}
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M16.6684 1.5L2.09732 16.0711" stroke="white" stroke-width="2" stroke-linecap="round" />
+                <path d="M15.9024 16.071L1.33136 1.49997" stroke="white" stroke-width="2" stroke-linecap="round" />
+              </svg>
+            </span>
+          </div>
+          {/* <h4 className="text-white text-center">Congratulations!</h4> */}
+
+          {/* <img
+            src={Images.characterTwo}
+            alt="Connect modal"
+            className="conngratulation-img"
+            width={100}
+          /> */}
+          {/* <br /> */}
+          <div className="p-4 rounded-[20px] bg-[#121D32]">
+            <div className="text-center conngratulation">
+              <p className="font-semibold text-base">Your wallet</p>
+              <p className="text-white font-semibold text-base">{walletAddress}</p>
+              <h6 className="font-semibold text-base">is Whitelisted!</h6>
+            </div>
+            <div className="mt-5 mb-3">
+              <button
+                type="button"
+                className="button full font-bold "
+                onClick={handleCloseCngratulationModal}
+              >
+                DONE!
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Failed modal */}
+      <div
+        className={sorryModal ? "modal-overlay show-overlay" : "modal-overlay"}
+      // className="modal-overlay show-overlay"
+      >
+        <div
+          className={
+            sorryModal ? "modal-container show-sorry-modal" : "modal-container"
+          }
+        // className="modal-container show-sorry-modal"
+        >
+          {/* <span className="close-icon" onClick={handleCloseSorryModal}>
+            X
+          </span> */}
+          {/* <h4 className="text-white text-center">Sorry</h4> */}
+          <div className="w-full items-center px-3 py-3 flex justify-between">
+            <p className="text-white font-bold lg:text-3xl text-xl">Sorry</p>
+            <span className="" onClick={handleCloseSorryModal}>
+              {/* X */}
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M16.6684 1.5L2.09732 16.0711" stroke="white" stroke-width="2" stroke-linecap="round" />
+                <path d="M15.9024 16.071L1.33136 1.49997" stroke="white" stroke-width="2" stroke-linecap="round" />
+              </svg>
+
+            </span>
+          </div>
+
+
+          {/* <img
+            src={Images.sorryModal}
+            alt="Connect modal"
+            className="sorry-img"
+            width={100}
+          />
+          <br /> */}
+          <div className="p-4 rounded-[20px] bg-[#121D32]">
+            <div className="text-center conngratulation sorry">
+              <p className="font-semibold text-base">Your wallet</p>
+              <p className="text-white">{walletAddress}</p>
+              <h6 className="font-semibold text-base">is Not Whitelisted!</h6>
+            </div>
+            <div className="mt-5 mb-3">
+              <button
+                type="button"
+                className="button font-bold full"
+                onClick={handleCloseSorryModal}
+              >
+                DONE!
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      {/* Checkout success modal */}
+      <div
+        className={
+          checkoutSuccess ? "modal-overlay1 show-overlay" : "modal-overlay1"
+        }
+      // className="modal-overlay1 show-overlay"
+      >
+        <div
+          className={`${checkoutSuccess
+            ? "modal-container1 show-sorry-modal p-4 checkout-modal"
+            : "modal-container1 p-4 checkout-modal "
+            }`}
+        // className="modal-container1 show-sorry-modal p-2 checkout-modal"
+        >
+          <div className="w-full items-center px-3 py-3 flex justify-between">
+            <h6 className="text-white font-semibold lg:text-2xl text-xl">
+              Report
+            </h6>
+            <span className="" onClick={handleCloseCheckoutModal}>
+              {/* X */}
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M16.6684 1.5L2.09732 16.0711" stroke="white" stroke-width="2" stroke-linecap="round" />
+                <path d="M15.9024 16.071L1.33136 1.49997" stroke="white" stroke-width="2" stroke-linecap="round" />
+              </svg>
+
+            </span>
+          </div>
+
+          <div className="p-4 rounded-[20px] bg-[#121D32]">
+            <h6 className="text-white font-semibold lg:text-2xl text-xl">
+              MINTED <span className="text-blue">{mintValue}</span>
+            </h6>
+            <h4 className="text-white text-center font-medium lg:text-xl ">Successfully</h4>
+
+            <div className="text-center w-100">
+              <Carousel showThumbs={false} showStatus={false} infiniteLoop={true}>
+                {nftData?.map((data, index) => (
+                  <div className="blue-bg" key={index}>
+                    <img src={data.img} alt="" />
+
+                    <span className="flex flex-row flex-justify mt-2 small-text-modal">
+                      <span className="font-semibold text-lg text-[rgba(255,255,255,0.6)]">Id</span>
+                      <span className="text-white text-xl lg:text-2xl font-semibold">{data.nftId}</span>
+                    </span>
+
+                    <span className="flex flex-row flex-justify mt-2 small-text-modal">
+                      <span className="font-semibold text-lg text-[rgba(255,255,255,0.6)]">Mouth</span>
+                      <span className="text-white text-xl lg:text-2xl font-semibold">
+                        {data.metaData.attributes[5].value}
+                      </span>
+                    </span>
+                    <span className="flex flex-row flex-justify mt-2 small-text-modal">
+                      <span className="font-semibold text-lg text-[rgba(255,255,255,0.6)]">Head</span>
+                      <span className="text-white text-xl lg:text-2xl font-semibold">
+                        {data.metaData.attributes[4].value}
+                      </span>
+                    </span>
+                    <span className="flex flex-row flex-justify mt-2 small-text-modal">
+                      <span className="font-semibold text-lg text-[rgba(255,255,255,0.6)]">Eyes</span>
+                      <span className="text-white text-xl lg:text-2xl font-semibold">
+                        {data.metaData.attributes[2].value}
+                      </span>
+                    </span>
+                    <span className="flex flex-row flex-justify mt-2 small-text-modal">
+                      <span className="font-semibold text-lg text-[rgba(255,255,255,0.6)]">Body</span>
+                      <span className="text-white text-xl lg:text-2xl font-semibold">
+                        {data.metaData.attributes[1].value}
+                      </span>
+                    </span>
+                    <span className="flex flex-row flex-justify mt-2 small-text-modal">
+                      <span className="font-semibold text-lg text-[rgba(255,255,255,0.6)]">Outifit</span>
+                      <span className="text-white text-xl lg:text-2xl font-semibold">
+                        {data.metaData.attributes[6].value}
+                      </span>
+                    </span>
+                    <span className="flex flex-row flex-justify mt-2 small-text-modal">
+                      <span className="font-semibold text-lg text-[rgba(255,255,255,0.6)]">Feet</span>
+                      <span className="text-white text-xl lg:text-2xl font-semibold">
+                        {data.metaData.attributes[3].value}
+                      </span>
+                    </span>
+                    <span className="flex flex-row flex-justify mt-2 small-text-modal">
+                      <span className="font-semibold text-lg text-[rgba(255,255,255,0.6)]">Background</span>
+                      <span className="text-white text-xl lg:text-2xl font-semibold">
+                        {data.metaData.attributes[0].value}
+                      </span>
+                    </span>
+                  </div>
+                ))}
+              </Carousel>
+            </div>
+
+            <div className="mt-2 mb-1">
+              <button
+                type="button"
+                className="button full"
+                onClick={handleCloseCheckoutModal}
+              >
+                DONE!
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+
       {/* <div class="bubbles">
         <div class="bubble">
           <img

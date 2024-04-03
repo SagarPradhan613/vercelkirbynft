@@ -11,7 +11,7 @@
 
 
 .HeaderRightPortion{
-    display: flex;
+    /* display: flex; */
     align-items: center;
 }
 
@@ -31,7 +31,7 @@
 }
 
 .leftLinkContainer {
-    display: flex;
+    /* display: flex; */
     gap: 2rem;
     align-items: center;
     margin-left: 5rem;
@@ -58,6 +58,9 @@
         padding-left: 0.5rem;
         padding-right: 0.5rem;
     }
+    .logo-container {
+        max-width: 150px;
+    }
 }
 
 @media screen and (min-width:711px) {
@@ -66,3 +69,35 @@
         padding-right: 6rem;
     }
 }
+
+@media screen and (min-width:1024px) and (max-width:1400px) {
+    .leftLinkContainer{
+        margin-left: 1rem !important;
+        gap: 1rem !important;
+    }
+    .MainHeaderContainer{
+        padding-left: 2rem !important;
+        padding-right: 2rem !important;
+    }
+    .head-links{
+        font-size: 12px !important;
+    }
+    .rightLinkContainer{
+        font-size: 12px !important;
+        gap: 1rem !important;
+    }
+    .HeaderRightPortion{
+        margin-left: 1rem !important;
+    }
+    .bnb{
+        font-size: 12px !important;
+    }
+    .connect{
+        font-size: 12px !important;
+    }
+    .coin-img{
+        height: 30px !important;
+        width: 30px !important;
+    }
+}
+
